@@ -31,6 +31,8 @@ dependencies:
   lottie: ^1.1.0
   google_fonts: ^2.1.0
   introduction_screen: ^2.1.0
+  sign_button: ^2.0.0
+  rive: ^0.7.23
 
 
 dev_dependencies:
@@ -55,6 +57,13 @@ flutter:
      - assets/plan_flight.png
      - assets/book_flight.png
      - assets/adventure.png
+     - assets/clean-the-car.riv
+     - assets/balloonist.riv
+     - assets/traveler.json
+     - assets/forgot.json
+     - assets/plane.json
+
+
 
   #   - images/a_dot_ham.jpeg
 

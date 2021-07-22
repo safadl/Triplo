@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'ForgotPassword.dart';
+import 'RegisterScreen.dart';
 import 'Myhomepage.dart';
 import 'package:flutter/services.dart';
+
+import 'LoginScreen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -15,10 +19,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Triplo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      routes: {
+        'login': (context) => LoginScreen(),
+        'Register': (context) => RegisterScreen(),
+        'ForgotP': (context) => ForgotPasswordScreen()
+      },
+      // home: MyHomePage(),
       home: MyHomePage(),
     );
   }

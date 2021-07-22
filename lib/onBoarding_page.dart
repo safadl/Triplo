@@ -75,8 +75,18 @@ class onBoardingScreen extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(dark_pink),
           ),
         ),
-        done: const Text('Start'),
-        onDone: () {},
+        done: ElevatedButton(
+          child: Text('Start', style: TextStyle(color: Colors.white)),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(green_color),
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, 'Register');
+          },
+        ),
+        onDone: () {
+          // Navigator.pushNamed(context, 'login');
+        },
       ),
     );
   }

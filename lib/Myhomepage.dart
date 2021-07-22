@@ -4,8 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:travel_app/onBoarding_page.dart';
 
-import 'Menu.dart';
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
   @override
@@ -22,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     //change duration to 10 !
-    Future.delayed(Duration(seconds: 10), () {
+    Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => onBoardingScreen()));
     });
@@ -40,11 +38,12 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-                height: 300,
-                width: 300,
-                child: Lottie.asset(
-                  "assets/vacation_splash.json",
-                )),
+              height: 300,
+              width: 300,
+              child: Lottie.asset(
+                "assets/vacation_splash.json",
+              ),
+            ),
             SizedBox(height: 20),
             Text('Triplo',
                 style: GoogleFonts.lobster(fontSize: 30, color: green_color)),
