@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'ForgotPassword.dart';
+import 'HomeScreen.dart';
 import 'RegisterScreen.dart';
-import 'Myhomepage.dart';
+import 'SplashScreen.dart';
 import 'package:flutter/services.dart';
 
 import 'LoginScreen.dart';
@@ -28,8 +29,8 @@ class MyApp extends StatelessWidget {
         'Register': (context) => RegisterScreen(),
         'ForgotP': (context) => ForgotPasswordScreen()
       },
-      // home: MyHomePage(),
-      home: MyHomePage(),
+      home: HomeScreen(),
+      // home: SplashScreen(),
     );
   }
 }

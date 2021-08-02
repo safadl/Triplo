@@ -4,10 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:travel_app/onBoarding_page.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  SplashScreen({Key key}) : super(key: key);
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
 const rose_color = const Color(0xffffebeb);
@@ -16,7 +16,7 @@ const green_color = const Color(0xff64c7d0);
 const pink_color = const Color(0xffffcece);
 const dark_pink = const Color(0xfff2acac);
 
-class _MyHomePageState extends State<MyHomePage> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     //change duration to 10 !

@@ -33,6 +33,7 @@ dependencies:
   introduction_screen: ^2.1.0
   sign_button: ^2.0.0
   rive: ^0.7.23
+  material_floating_search_bar: ^0.3.4
 
 
 dev_dependencies:
@@ -62,6 +63,16 @@ flutter:
      - assets/traveler.json
      - assets/forgot.json
      - assets/plane.json
+     - assets/tokyo.jpg
+     - assets/travel.json
+     - assets/travel_map.json
+     - assets/switz.jpg
+     - assets/switzr.jpg
+     - assets/mount.jpg
+     - assets/mount1.jpg    
+     - assets/mount2.jpg
+     - assets/mount3.jpg
+
 
 
 
