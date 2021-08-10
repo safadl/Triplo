@@ -3,6 +3,8 @@ import 'package:lottie/lottie.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 import 'HotPlace.dart';
+import 'Hotel.dart';
+import 'HotelsScreen.dart';
 import 'RelevantPlace.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -200,7 +202,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Flex(
                   direction: Axis.vertical,
                   children: [
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.3),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.35),
                     Center(
                       child: SingleChildScrollView(
                         clipBehavior: Clip.none,
@@ -269,7 +271,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Material(
                                   color: Colors.transparent,
                                   child: InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  HotelsScreen()));
+                                    },
                                     child: Container(
                                       child: Center(
                                           child: Padding(
@@ -437,7 +444,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             HotPlace('Bali', 'Indonesia', '700',
                                 "https://pix10.agoda.net/hotelImages/68310/-1/459412f7142ccf9578e5fd075aee86ee.jpg?s=1024x768"),
                             HotPlace("Miami", 'USA', '1200',
-                                "https://docu-flix.com/wp-content/uploads/2021/06/0ca6e469-city-30651-1632b88f203.jpeg"),
+                                "https://images.theconversation.com/files/413417/original/file-20210727-19-aghe22.jpg?ixlib=rb-1.1.0&rect=0%2C7%2C5138%2C3404&q=45&auto=format&w=496&fit=clip"),
                             HotPlace("Tokyo", 'Japan', '900',
                                 "https://stillmed.olympics.com/media/Images/OlympicOrg/News/2019/07/23/2019-07-23-Trailblazing-Tokyo-looking-ahead-featured.jpg?interpolation=lanczos-none&resize=3840:1600"),
                           ],
