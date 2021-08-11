@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'ForgotPassword.dart';
 import 'HomeScreen.dart';
+import 'HotelDescription.dart';
 import 'HotelsScreen.dart';
 import 'RegisterScreen.dart';
 import 'SplashScreen.dart';
 import 'package:flutter/services.dart';
 
 import 'LoginScreen.dart';
+import 'Test.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         'Register': (context) => RegisterScreen(),
         'ForgotP': (context) => ForgotPasswordScreen(),
       },
-      home: HotelsScreen(),
+      home: Test(),
       // HomeScreen(),
       // home: SplashScreen(),
     );

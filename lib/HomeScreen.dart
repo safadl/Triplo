@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:search_widget/search_widget.dart';
 
 import 'CustomDrawer.dart';
 import 'HotPlace.dart';
@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       resizeToAvoidBottomInset: true,
       drawer: CustomDrawer(),
       extendBodyBehindAppBar: true,
-      appBar: appBar(),
+      appBar: appBar(title: '', color: Colors.white),
       body: SingleChildScrollView(
         child: Container(
           height: double.maxFinite,
@@ -66,6 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: const EdgeInsets.only(top: 170.0),
                               child: FloatingSearchBar(
+                                automaticallyImplyBackButton: false,
+                                automaticallyImplyDrawerHamburger: false,
                                 borderRadius: BorderRadius.circular(10),
                                 axisAlignment: isPortrait ? 0.0 : -1.0,
                                 width: isPortrait ? 600 : 500,

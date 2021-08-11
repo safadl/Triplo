@@ -5,6 +5,9 @@ import 'CustomDrawer.dart';
 import 'Hotel.dart';
 import 'appBar.dart';
 
+const green_color = const Color(0xff64c7d0);
+const dark_color = const Color(0xff232323);
+
 class HotelsScreen extends StatefulWidget {
   @override
   _HotelsScreenState createState() => _HotelsScreenState();
@@ -17,10 +20,10 @@ class _HotelsScreenState extends State<HotelsScreen> {
     final isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
-      // drawer: CustomDrawer(),
+      drawer: CustomDrawer(),
       resizeToAvoidBottomInset: true,
       extendBodyBehindAppBar: true,
-      appBar: appBar(),
+      appBar: appBar(title: 'Hotels', color: dark_color),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,6 +34,8 @@ class _HotelsScreenState extends State<HotelsScreen> {
                 clipBehavior: Clip.none,
                 children: [
                   FloatingSearchBar(
+                    automaticallyImplyBackButton: false,
+                    automaticallyImplyDrawerHamburger: false,
                     hint: 'Search...',
                     scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
                     transitionDuration: const Duration(milliseconds: 800),
@@ -40,22 +45,19 @@ class _HotelsScreenState extends State<HotelsScreen> {
                     // openAxisAlignment: 0.0,
                     width: isPortrait ? 600 : 500,
                     debounceDelay: const Duration(milliseconds: 500),
-                    onQueryChanged: (query) {
-                      // Call your model, bloc, controller here.
-                    },
-                    // Specify a custom transition to be used for
-                    // animating between opened and closed stated.
-                    // transition: CircularFloatingSearchBarTransition(),
+                    onQueryChanged: (query) {},
+
                     actions: [
                       FloatingSearchBarAction(
                         showIfOpened: false,
                         child: CircularButton(
-                          icon: const Icon(Icons.search_outlined),
+                          icon: const Icon(Icons.search_outlined,
+                              color: green_color),
                           onPressed: () {},
                         ),
                       ),
                       FloatingSearchBarAction.searchToClear(
-                        showIfClosed: false,
+                        showIfClosed: true,
                       ),
                     ],
                     builder: (context, transition) {
@@ -85,7 +87,8 @@ class _HotelsScreenState extends State<HotelsScreen> {
           //  SizedBox(height: 20),
 
           Container(
-            height: MediaQuery.of(context).size.height * 0.78,
+            // decoration: BoxDecoration(color: Colors.red),
+            height: MediaQuery.of(context).size.height * 0.81,
             child: ListView(
               shrinkWrap: true,
               // scrollDirection: Axis.horizontal,

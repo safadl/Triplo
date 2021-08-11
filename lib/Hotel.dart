@@ -27,7 +27,7 @@ class _HotelState extends State<Hotel> {
   Widget build(BuildContext context) {
     return Container(
       width: 170,
-      height: 200,
+      height: 220,
       child: Material(
         color: Colors.transparent,
         child: InkWell(
@@ -106,7 +106,7 @@ class _HotelState extends State<Hotel> {
               borderRadius: BorderRadius.circular(10.0),
             ),
             elevation: 5,
-            margin: EdgeInsets.all(20),
+            margin: EdgeInsets.all(15),
           ),
         ),
       ),

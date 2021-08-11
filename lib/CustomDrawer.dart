@@ -11,8 +11,7 @@ const dark_pink = const Color(0xfff29d9d);
 class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Drawer(
+    return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
@@ -76,6 +75,6 @@ class CustomDrawer extends StatelessWidget {
           ),
         ],
       ),
-    ));
+    );
   }
 }
