@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
+import 'CustomDrawer.dart';
 import 'HotPlace.dart';
 import 'Hotel.dart';
 import 'HotelsScreen.dart';
 import 'RelevantPlace.dart';
+import 'appBar.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -29,87 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Container(
-              height: 50,
-              child: DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    'Safa Deldoul',
-                    style: TextStyle(
-                      color: dark_color,
-                      fontSize: 24,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home_outlined, color: green_color),
-              title: Text('Home'),
-              onTap: () {
-                // Navigator.of(context).pop();
-                // Navigator.of(context).push(MaterialPageRoute(
-                //     builder: (BuildContext context) => NewPage("Page two")));
-              },
-            ),
-            Container(
-              child: ListTile(
-                leading: Icon(Icons.location_on_outlined, color: green_color),
-                title: Text('My trips'),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.flight_outlined, color: green_color),
-              title: Text('My tickets'),
-            ),
-            ListTile(
-              leading: Icon(Icons.king_bed_outlined, color: green_color),
-              title: Text('My booking'),
-            ),
-            ListTile(
-              leading: Icon(Icons.explore_outlined, color: green_color),
-              title: Text('Explore'),
-            ),
-            ListTile(
-              leading: Icon(Icons.map_outlined, color: green_color),
-              title: Text('Map'),
-            ),
-            ListTile(
-              leading: Icon(Icons.settings, color: green_color),
-              title: Text('Settings'),
-            ),
-            SizedBox(height: 180),
-            ListTile(
-              leading: Icon(Icons.logout, color: green_color),
-              title: Text('Log Out'),
-            ),
-          ],
-        ),
-      ),
+      drawer: CustomDrawer(),
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: new Icon(Icons.menu),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.person_outline, color: Colors.white),
-              onPressed: () {}),
-        ],
-      ),
+      appBar: appBar(),
       body: SingleChildScrollView(
         child: Container(
           height: double.maxFinite,

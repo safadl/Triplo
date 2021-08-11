@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
+import 'CustomDrawer.dart';
 import 'Hotel.dart';
+import 'appBar.dart';
 
 class HotelsScreen extends StatefulWidget {
   @override
@@ -15,76 +17,105 @@ class _HotelsScreenState extends State<HotelsScreen> {
     final isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
-      body: Stack(
+      // drawer: CustomDrawer(),
+      resizeToAvoidBottomInset: true,
+      extendBodyBehindAppBar: true,
+      appBar: appBar(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FloatingSearchBar(
-            hint: 'Search...',
-            scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
-            transitionDuration: const Duration(milliseconds: 800),
-            transitionCurve: Curves.easeInOut,
-            physics: const BouncingScrollPhysics(),
-            axisAlignment: isPortrait ? 0.0 : -1.0,
-            openAxisAlignment: 0.0,
-            width: isPortrait ? 600 : 500,
-            debounceDelay: const Duration(milliseconds: 500),
-            onQueryChanged: (query) {
-              // Call your model, bloc, controller here.
-            },
-            // Specify a custom transition to be used for
-            // animating between opened and closed stated.
-            transition: CircularFloatingSearchBarTransition(),
-            actions: [
-              FloatingSearchBarAction(
-                showIfOpened: false,
-                child: CircularButton(
-                  icon: const Icon(Icons.place),
-                  onPressed: () {},
-                ),
-              ),
-              FloatingSearchBarAction.searchToClear(
-                showIfClosed: false,
-              ),
-            ],
-            builder: (context, transition) {
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Material(
-                  color: Colors.white,
-                  elevation: 4.0,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: Colors.accents.map((color) {
-                      return Container(height: 112, color: color);
-                    }).toList(),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 50.0),
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  FloatingSearchBar(
+                    hint: 'Search...',
+                    scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
+                    transitionDuration: const Duration(milliseconds: 800),
+                    transitionCurve: Curves.easeInOut,
+                    physics: const BouncingScrollPhysics(),
+                    axisAlignment: isPortrait ? 0.0 : -1.0,
+                    // openAxisAlignment: 0.0,
+                    width: isPortrait ? 600 : 500,
+                    debounceDelay: const Duration(milliseconds: 500),
+                    onQueryChanged: (query) {
+                      // Call your model, bloc, controller here.
+                    },
+                    // Specify a custom transition to be used for
+                    // animating between opened and closed stated.
+                    // transition: CircularFloatingSearchBarTransition(),
+                    actions: [
+                      FloatingSearchBarAction(
+                        showIfOpened: false,
+                        child: CircularButton(
+                          icon: const Icon(Icons.search_outlined),
+                          onPressed: () {},
+                        ),
+                      ),
+                      FloatingSearchBarAction.searchToClear(
+                        showIfClosed: false,
+                      ),
+                    ],
+                    builder: (context, transition) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Material(
+                          color: Colors.white,
+                          elevation: 4.0,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: Colors.accents.map((color) {
+                              return Container(height: 112, color: color);
+                            }).toList(),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                ),
-              );
-            },
+                  Padding(
+                    padding: const EdgeInsets.only(top: 80.0, left: 20),
+                    child: Text('645 results', style: TextStyle(fontSize: 25)),
+                  ),
+                ],
+              ),
+            ),
           ),
-          SizedBox(height: 200),
-          ListView(
-            shrinkWrap: true,
-            // scrollDirection: Axis.horizontal,
-            children: [
-              Hotel(
-                  title: 'Bali',
-                  description: 'Indonesia',
-                  price: '700',
-                  image:
-                      "https://pix10.agoda.net/hotelImages/68310/-1/459412f7142ccf9578e5fd075aee86ee.jpg?s=1024x768"),
-              Hotel(
-                  title: "Miami",
-                  description: 'USA',
-                  price: '1200',
-                  image:
-                      "https://images.theconversation.com/files/413417/original/file-20210727-19-aghe22.jpg?ixlib=rb-1.1.0&rect=0%2C7%2C5138%2C3404&q=45&auto=format&w=496&fit=clip"),
-              Hotel(
-                  title: "Tokyo",
-                  description: 'Japan',
-                  price: '900',
-                  image:
-                      "https://stillmed.olympics.com/media/Images/OlympicOrg/News/2019/07/23/2019-07-23-Trailblazing-Tokyo-looking-ahead-featured.jpg?interpolation=lanczos-none&resize=3840:1600"),
-            ],
+          //  SizedBox(height: 20),
+
+          Container(
+            height: MediaQuery.of(context).size.height * 0.78,
+            child: ListView(
+              shrinkWrap: true,
+              // scrollDirection: Axis.horizontal,
+              children: [
+                Hotel(
+                    title: 'Hotel four seasons',
+                    description: 'Indonesia',
+                    price: '700\$',
+                    image:
+                        'https://q-xx.bstatic.com/xdata/images/hotel/840x460/251002386.jpg?k=fd49dd621001fbfaf84a6c4546faf54fbf7471d1a953b6f19c7df59c78eafd33&o='),
+                Hotel(
+                    title: "Hotel Movenpick",
+                    description: 'USA',
+                    price: '1200\$',
+                    image:
+                        'https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg'),
+                Hotel(
+                    title: "Hotel Marcella",
+                    description: 'Japan',
+                    price: '900\$',
+                    image:
+                        'https://image.resabooking.com/images/hotel/Nesrine_10.jpg'),
+                Hotel(
+                    title: "Hotel Marbella",
+                    description: 'Japan',
+                    price: '900\$',
+                    image:
+                        'https://promohotel.os-travel.com/file_manager/source/GALLERY/HAMMAMET/MAGIC%20LIFE%20HOLIDAY%20VILLAGE%20MANAR/booking.promohotel.tn-Hotel-Magic-life-holiday-village-Manar-Hammamet-piscine.webp'),
+              ],
+            ),
           ),
         ],
       ),

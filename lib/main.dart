@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'ForgotPassword.dart';
 import 'HomeScreen.dart';
+import 'HotelsScreen.dart';
 import 'RegisterScreen.dart';
 import 'SplashScreen.dart';
 import 'package:flutter/services.dart';
@@ -27,9 +28,10 @@ class MyApp extends StatelessWidget {
       routes: {
         'login': (context) => LoginScreen(),
         'Register': (context) => RegisterScreen(),
-        'ForgotP': (context) => ForgotPasswordScreen()
+        'ForgotP': (context) => ForgotPasswordScreen(),
       },
-      home: HomeScreen(),
+      home: HotelsScreen(),
+      // HomeScreen(),
       // home: SplashScreen(),
     );
   }
