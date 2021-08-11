@@ -77,7 +77,7 @@ class _HotelsScreenState extends State<HotelsScreen> {
                     },
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 80.0, left: 20),
+                    padding: const EdgeInsets.only(top: 70.0, left: 20),
                     child: Text('645 results', style: TextStyle(fontSize: 25)),
                   ),
                 ],

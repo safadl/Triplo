@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import 'HotelDescription.dart';
+
 const green_color = const Color(0xff64c7d0);
 
 class Hotel extends StatefulWidget {
@@ -32,7 +34,8 @@ class _HotelState extends State<Hotel> {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
-            print('hot place');
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => HotelDescription()));
           },
           child: Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,

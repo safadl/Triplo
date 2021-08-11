@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'BarWidget.dart';
@@ -33,7 +34,7 @@ class _HotelDescriptionState extends State<HotelDescription> {
   //     tilt: 59.440717697143555,
   //     zoom: 11.5);
   GoogleMapController mapController;
-  final LatLng _center = const LatLng(45.521563, -122.677433);
+  final LatLng _center = const LatLng(41.903364019799504, 12.501780158002843);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -101,27 +102,119 @@ class _HotelDescriptionState extends State<HotelDescription> {
                 'Location',
                 style: GoogleFonts.aBeeZee(fontSize: 22, color: green_color),
               ),
-              Container(
-                // decoration: BoxDecoration(color: Colors.red),
-                width: 400,
-                height: 600,
-                child: GoogleMap(
-                  onMapCreated: _onMapCreated,
-                  initialCameraPosition: CameraPosition(
-                    target: _center,
-                    zoom: 11.0,
+              SizedBox(height: 15),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  // decoration: BoxDecoration(color: Colors.red),
+
+                  width: 400,
+                  height: 400,
+                  child: GoogleMap(
+                    onMapCreated: _onMapCreated,
+                    initialCameraPosition: CameraPosition(
+                      target: _center,
+                      zoom: 11.0,
+                    ),
+                    markers: <Marker>{},
                   ),
                 ),
               ),
+              SizedBox(height: 15),
+              Text(
+                'Reviews',
+                style: GoogleFonts.aBeeZee(fontSize: 22, color: green_color),
+              ),
+              RatingBar.builder(
+                itemSize: 18,
+                initialRating: 3.5,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {
+                  print(rating);
+                },
+              ),
+              SizedBox(height: 15),
+              Row(
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.network(
+                        'https://photographypro.com/wp-content/uploads/2017/08/portrait-photography-focal-length-50mm-1.jpg',
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Mikayla Johnson',
+                          style: GoogleFonts.aBeeZee(
+                              fontSize: 15,
+                              color: dark_color,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                            'This hotel is clean. I enjoyed my stay here \n with my family. ')
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 15),
+              Row(
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.network(
+                        'https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29uJTIwcG9ydHJhaXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80',
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Andrew Robinson',
+                          style: GoogleFonts.aBeeZee(
+                              fontSize: 15,
+                              color: dark_color,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        Text('It was so much fun. We enjoyed the pool. ')
+                      ],
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: Text('To the lake!'),
-        icon: Icon(Icons.directions_boat),
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: () {},
+      //   label: Text('To the lake!'),
+      //   icon: Icon(Icons.directions_boat),
+      // ),
     );
   }
 }

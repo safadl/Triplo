@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
         'Register': (context) => RegisterScreen(),
         'ForgotP': (context) => ForgotPasswordScreen(),
       },
-      home: Test(),
+      home: SplashScreen(),
+      // HotelsScreen()
       // HomeScreen(),
       // home: SplashScreen(),
     );
