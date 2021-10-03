@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 import 'CustomDrawer.dart';
-import 'Hotel.dart';
+import 'Restaurant.dart';
 import 'appBar.dart';
 
 const green_color = const Color(0xff64c7d0);
 const dark_color = const Color(0xff232323);
 
-class HotelsScreen extends StatefulWidget {
+class RestaurantScreen extends StatefulWidget {
   @override
-  _HotelsScreenState createState() => _HotelsScreenState();
+  _RestaurantsScreenState createState() => _RestaurantsScreenState();
 }
 
-class _HotelsScreenState extends State<HotelsScreen> {
+class _RestaurantsScreenState extends State<RestaurantScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -23,7 +23,7 @@ class _HotelsScreenState extends State<HotelsScreen> {
       drawer: CustomDrawer(),
       resizeToAvoidBottomInset: true,
       extendBodyBehindAppBar: true,
-      appBar: appBar(title: 'Hotels', color: dark_color),
+      appBar: appBar(title: 'Restaurants', color: dark_color),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -93,30 +93,26 @@ class _HotelsScreenState extends State<HotelsScreen> {
               shrinkWrap: true,
               // scrollDirection: Axis.horizontal,
               children: [
-                Hotel(
-                    title: 'Hotel four seasons',
-                    description: 'Indonesia',
-                    price: '700\$',
+                Restaurant(
+                    title: 'Trattoria Monti',
+                    location: "Via della Vite, 28, Rome",
                     image:
-                        'https://q-xx.bstatic.com/xdata/images/hotel/840x460/251002386.jpg?k=fd49dd621001fbfaf84a6c4546faf54fbf7471d1a953b6f19c7df59c78eafd33&o='),
-                Hotel(
-                    title: "Hotel Movenpick",
-                    description: 'USA',
-                    price: '1200\$',
+                        'https://media-cdn.tripadvisor.com/media/photo-m/1280/18/19/1a/a8/restaurant-el-borj.jpg'),
+                Restaurant(
+                    title: "CiPASSO Bistrot",
+                    location: "Via della Vite, 28, Rome",
                     image:
-                        'https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg'),
-                Hotel(
-                    title: "Hotel Marcella",
-                    description: 'Japan',
-                    price: '900\$',
+                        'https://media-cdn.tripadvisor.com/media/photo-s/19/ca/bd/ac/l-espace-du-restaurant.jpg'),
+                Restaurant(
+                    title: "Pane e Salame",
+                    location: "Via della Vite, 28, Rome",
                     image:
-                        'https://image.resabooking.com/images/hotel/Nesrine_10.jpg'),
-                Hotel(
-                    title: "Hotel Marbella",
-                    description: 'Japan',
-                    price: '900\$',
+                        'https://www.marhba.com/images/lifestyle/lifestyle2020/restogastrotunis/ROOFTOP360LAMARSA.jpg'),
+                Restaurant(
+                    title: "Ambrosia Rooftop",
+                    location: "Via della Vite, 28, Rome",
                     image:
-                        'https://promohotel.os-travel.com/file_manager/source/GALLERY/HAMMAMET/MAGIC%20LIFE%20HOLIDAY%20VILLAGE%20MANAR/booking.promohotel.tn-Hotel-Magic-life-holiday-village-Manar-Hammamet-piscine.webp'),
+                        'https://www.marhba.com/images/lifestyle/lifestyle2020/restogastrotunis/LeGolfe.jpg'),
               ],
             ),
           ),

@@ -4,12 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'BarWidget.dart';
 import 'CustomDrawer.dart';
-import 'ParkWidget.dart';
-import 'PoolWidget.dart';
-import 'SpaWidget.dart';
-import 'WifiWidget.dart';
+
+import 'AmenityWidget.dart';
 import 'appBar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -79,11 +76,11 @@ class _HotelDescriptionState extends State<HotelDescription> {
               ),
               SizedBox(height: 25),
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                WifiWidget(),
-                SpaWidget(),
-                PoolWidget(),
-                BarWidget(),
-                ParkWidget(),
+                AmenityWidget('Wi-fi', Icons.wifi_outlined),
+                AmenityWidget('Spa', Icons.spa_outlined),
+                AmenityWidget('Pool', Icons.pool_outlined),
+                AmenityWidget('Bar', Icons.local_bar_outlined),
+                AmenityWidget('Parking', Icons.local_parking_outlined),
               ]),
               SizedBox(height: 20),
               Text(

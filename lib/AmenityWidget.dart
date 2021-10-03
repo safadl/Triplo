@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PoolWidget extends StatelessWidget {
+class AmenityWidget extends StatelessWidget {
+  final String title;
+  final IconData icon;
+
+  const AmenityWidget(this.title, this.icon);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,11 +18,13 @@ class PoolWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.pool_outlined, color: Colors.grey),
+          Icon(this.icon, color: Colors.grey),
           Text(
-            'Pool',
+            this.title,
             style: GoogleFonts.notoSans(
-                color: Colors.grey[800], fontWeight: FontWeight.w600),
+                color: Colors.grey[800],
+                fontWeight: FontWeight.w600,
+                fontSize: 11),
           )
         ],
       ),
