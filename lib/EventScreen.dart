@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 import 'CustomDrawer.dart';
+import 'Event.dart';
 import 'Restaurant.dart';
 // import 'appBar.dart';
 
@@ -37,27 +38,27 @@ class _EventScreenState extends State<EventScreen> {
             children: [
               Container(
                 // decoration: BoxDecoration(color: Colors.red),
-                height: MediaQuery.of(context).size.height * 0.81,
+                height: MediaQuery.of(context).size.height,
                 child: ListView(
                   shrinkWrap: true,
                   // scrollDirection: Axis.horizontal,
                   children: [
-                    Restaurant(
-                        title: 'Trattoria Monti',
-                        location: "Via della Vite, 28, Rome",
+                    Event(
+                        title: 'Théâtre Globe - Silvano Toti',
+                        location: "Largo Aqua Felix, 00197",
                         image:
-                            'https://media-cdn.tripadvisor.com/media/photo-m/1280/18/19/1a/a8/restaurant-el-borj.jpg'),
-                    Restaurant(
+                            'https://www.romeing.it/wp-content/uploads/2017/08/silvano-toti-globe-theater-770x513.jpg'),
+                    Event(
                         title: "CiPASSO Bistrot",
                         location: "Via della Vite, 28, Rome",
                         image:
                             'https://media-cdn.tripadvisor.com/media/photo-s/19/ca/bd/ac/l-espace-du-restaurant.jpg'),
-                    Restaurant(
+                    Event(
                         title: "Pane e Salame",
                         location: "Via della Vite, 28, Rome",
                         image:
                             'https://www.marhba.com/images/lifestyle/lifestyle2020/restogastrotunis/ROOFTOP360LAMARSA.jpg'),
-                    Restaurant(
+                    Event(
                         title: "Ambrosia Rooftop",
                         location: "Via della Vite, 28, Rome",
                         image:
@@ -72,27 +73,27 @@ class _EventScreenState extends State<EventScreen> {
             children: [
               Container(
                 // decoration: BoxDecoration(color: Colors.red),
-                height: MediaQuery.of(context).size.height * 0.81,
+                height: MediaQuery.of(context).size.height,
                 child: ListView(
                   shrinkWrap: true,
                   // scrollDirection: Axis.horizontal,
                   children: [
-                    Restaurant(
+                    Event(
                         title: 'Trattoria Monti',
                         location: "Via della Vite, 28, Rome",
                         image:
                             'https://media-cdn.tripadvisor.com/media/photo-m/1280/18/19/1a/a8/restaurant-el-borj.jpg'),
-                    Restaurant(
+                    Event(
                         title: "CiPASSO Bistrot",
                         location: "Via della Vite, 28, Rome",
                         image:
                             'https://media-cdn.tripadvisor.com/media/photo-s/19/ca/bd/ac/l-espace-du-restaurant.jpg'),
-                    Restaurant(
+                    Event(
                         title: "Pane e Salame",
                         location: "Via della Vite, 28, Rome",
                         image:
                             'https://www.marhba.com/images/lifestyle/lifestyle2020/restogastrotunis/ROOFTOP360LAMARSA.jpg'),
-                    Restaurant(
+                    Event(
                         title: "Ambrosia Rooftop",
                         location: "Via della Vite, 28, Rome",
                         image:
