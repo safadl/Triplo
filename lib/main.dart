@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'FlightScreen.dart';
 import 'ForgotPassword.dart';
 import 'HomeScreen.dart';
 import 'RegisterScreen.dart';
@@ -29,7 +30,9 @@ class MyApp extends StatelessWidget {
         'Register': (context) => RegisterScreen(),
         'ForgotP': (context) => ForgotPasswordScreen(),
       },
-      home: HomeScreen(),
+      home:
+          //  FlightScreen(),
+          HomeScreen(),
 
       //  SplashScreen(),
       // HotelsScreen()

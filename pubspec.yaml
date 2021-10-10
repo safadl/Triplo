@@ -39,6 +39,9 @@ dependencies:
   google_maps_flutter: ^2.0.6
   curved_navigation_bar: ^1.0.1
   vertical_card_pager: ^1.0.0
+  date_field: ^2.1.2
+  # http: ^0.13.4
+
 
 
 dev_dependencies:

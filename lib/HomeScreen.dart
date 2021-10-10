@@ -4,6 +4,7 @@ import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:search_widget/search_widget.dart';
 
 import 'CustomDrawer.dart';
+import 'FlightScreen.dart';
 import 'HotPlace.dart';
 import 'Hotel.dart';
 import 'HotelsScreen.dart';
@@ -31,16 +32,27 @@ class _HomeScreenState extends State<HomeScreen> {
         MediaQuery.of(context).orientation == Orientation.portrait;
 
     return Scaffold(
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.blueAccent,
-        items: <Widget>[
-          Icon(Icons.add, size: 30),
-          Icon(Icons.list, size: 30),
-          Icon(Icons.compare_arrows, size: 30),
-        ],
-        onTap: (index) {
-          //Handle button tap
-        },
+      extendBody: true,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Color(0x00ffffff),
+        ),
+        child: CurvedNavigationBar(
+          index: 1,
+          height: 50,
+          backgroundColor: Color(0x00ffffff),
+          color: Color(0xccffffff),
+          items: <Widget>[
+            Icon(Icons.settings, size: 30),
+            Icon(Icons.home, size: 30),
+            Icon(Icons.compare_arrows, size: 30),
+          ],
+          onTap: (index) {
+            //Handle button tap
+            // setState(() {
+            // });
+          },
+        ),
       ),
       resizeToAvoidBottomInset: true,
       drawer: CustomDrawer(),
@@ -48,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: appBar(title: '', color: Colors.white),
       body: SingleChildScrollView(
         child: Container(
-          height: double.maxFinite,
+          height: MediaQuery.of(context).size.height * 1.3,
           child: Expanded(
             child: Stack(
               children: [
@@ -166,7 +178,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Material(
                                   color: Colors.transparent,
                                   child: InkWell(
-                                    onTap: () => {print('helloooo')},
+                                    onTap: () => {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  FlightScreen()))
+                                    },
                                     child: Container(
                                       child: Center(
                                         child: Padding(

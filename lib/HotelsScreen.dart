@@ -50,6 +50,7 @@ class _HotelsScreenState extends State<HotelsScreen> {
                     actions: [
                       // FloatingSearchBarAction(
                       //   showIfOpened: false,
+
                       //   child: CircularButton(
                       //     icon: const Icon(Icons.search_outlined,
                       //         color: green_color),

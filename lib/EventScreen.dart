@@ -3,7 +3,6 @@ import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 import 'CustomDrawer.dart';
 import 'Event.dart';
-import 'Restaurant.dart';
 // import 'appBar.dart';
 
 const green_color = const Color(0xff64c7d0);
