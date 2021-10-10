@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:search_widget/search_widget.dart';
+import 'package:travel_app/FerriesScreen.dart';
 
 import 'CustomDrawer.dart';
 import 'FlightScreen.dart';
@@ -316,7 +317,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: Colors.transparent,
                                   child: InkWell(
                                     // splashColor: Colors.yellow,
-                                    onTap: () => {print('helloooo')},
+                                    onTap: () => {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  FerriesScreen()))
+                                    },
                                     child: Container(
                                       // color: Colors.blue,
 

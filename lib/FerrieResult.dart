@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
 import 'CustomDrawer.dart';
-import 'FlightWidget.dart';
+import 'FerryWidget.dart';
 
 const green_color = const Color(0xff64c7d0);
 
-class FlightResult extends StatefulWidget {
+class FerrieResult extends StatefulWidget {
   @override
-  _FlightResultState createState() => _FlightResultState();
+  _FerrieResultState createState() => _FerrieResultState();
 }
 
-class _FlightResultState extends State<FlightResult> {
-  List<FlightWidget> items = [
-    FlightWidget(
+class _FerrieResultState extends State<FerrieResult> {
+  List<FerryWidget> items = [
+    FerryWidget(
         departure: "21:00",
         arrival: "22:00",
         departureAir: "Orly",
         arrivalAir: "JFK"),
-    FlightWidget(
+    FerryWidget(
         departure: "20:00",
         arrival: "23:35",
         departureAir: "Orly",
