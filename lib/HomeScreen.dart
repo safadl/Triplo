@@ -10,6 +10,7 @@ import 'HotPlace.dart';
 import 'Hotel.dart';
 import 'HotelsScreen.dart';
 import 'RelevantPlace.dart';
+import 'TrainsScreen.dart';
 import 'appBar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -274,7 +275,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Material(
                                   color: Colors.transparent,
                                   child: InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  TrainScreen()));
+                                    },
                                     child: Container(
                                       child: Center(
                                           child: Padding(
