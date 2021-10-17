@@ -19,14 +19,34 @@ const coral_color = const Color(0xffff868f);
 const green_color = const Color(0xff64c7d0);
 
 class CityDescription extends StatefulWidget {
+  final String title;
+  final String image;
+  final String location;
+  final double review;
+  final String description;
+  final String geoloc;
+  // final List restos;
+
+  CityDescription(this.title, this.image, this.location, this.review,
+      this.description, this.geoloc);
+
   @override
-  _CityDescriptionState createState() => _CityDescriptionState();
+  _CityDescriptionState createState() => _CityDescriptionState(this.title,
+      this.image, this.location, this.review, this.description, this.geoloc);
 }
 
 class _CityDescriptionState extends State<CityDescription> {
   GoogleMapController mapController;
   final LatLng _center = const LatLng(41.902782, 12.496366);
-
+  // String title, image, location, review, description, geoloc;
+  // _CityDescriptionState(
+  //     {title,
+  //     image,
+  //     location,
+  //     review,
+  //     description,
+  //     geoloc});
+  _CityDescriptionState(title, image, location, review, description, geoloc);
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
@@ -45,7 +65,7 @@ class _CityDescriptionState extends State<CityDescription> {
               Container(
                 alignment: Alignment.topCenter,
                 child: Text(
-                  'Rome',
+                  this.widget.title,
                   style: GoogleFonts.aBeeZee(fontSize: 27, color: dark_color),
                 ),
               ),
@@ -53,7 +73,7 @@ class _CityDescriptionState extends State<CityDescription> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.network(
-                  'https://tourscanner.com/blog/wp-content/uploads/2021/03/choses-a-faire-a-Rome-Italie.jpg',
+                  this.widget.image,
                 ),
               ),
               SizedBox(height: 10),
@@ -61,7 +81,7 @@ class _CityDescriptionState extends State<CityDescription> {
                 children: [
                   Icon(Icons.location_on_outlined, color: coral_color),
                   Text(
-                    'Rome, Italy',
+                    this.widget.location,
                     style: GoogleFonts.aBeeZee(fontSize: 15, color: dark_color),
                   )
                 ],
@@ -69,7 +89,7 @@ class _CityDescriptionState extends State<CityDescription> {
               SizedBox(height: 15),
               RatingBar.builder(
                 itemSize: 18,
-                initialRating: 3.5,
+                initialRating: this.widget.review,
                 minRating: 1,
                 direction: Axis.horizontal,
                 allowHalfRating: true,
@@ -85,15 +105,19 @@ class _CityDescriptionState extends State<CityDescription> {
               ),
               SizedBox(height: 24),
               Text(
-                " Rome is the capital city of Italy. It is also the capital of the Lazio region, the centre of the Metropolitan City of Rome, and a special comune named Comune di Roma Capitale. With 2,860,009 residents in 1,285 km2 (496.1 sq mi), Rome is the country's most populated comune and the third most populous city in the European Union by population within city limits. The Metropolitan City of Rome, with a population of 4,355,725 residents, is the most populous metropolitan city in Italy.Its metropolitan area is the third-most populous within Italy. Rome is located in the central-western portion of the Italian Peninsula, within Lazio (Latium), along the shores of the Tiber.",
+                this.widget.description.toString(),
+                // " Rome is the capital city of Italy. It is also the capital of the Lazio region, the centre of the Metropolitan City of Rome, and a special comune named Comune di Roma Capitale. With 2,860,009 residents in 1,285 km2 (496.1 sq mi), Rome is the country's most populated comune and the third most populous city in the European Union by population within city limits. The Metropolitan City of Rome, with a population of 4,355,725 residents, is the most populous metropolitan city in Italy.Its metropolitan area is the third-most populous within Italy. Rome is located in the central-western portion of the Italian Peninsula, within Lazio (Latium), along the shores of the Tiber.",
                 // maxLines: 4,
                 style: GoogleFonts.notoSans(
                     fontSize: 15, color: dark_color, height: 2),
               ),
               SizedBox(height: 25),
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                ResourcesWidget("Restaurants", Icons.restaurant_outlined,
-                    RestaurantScreen()),
+                ResourcesWidget(
+                  "Restaurants",
+                  Icons.restaurant_outlined,
+                  RestaurantScreen(this.widget.title),
+                ),
                 ResourcesWidget("Hotels", Icons.hotel_outlined, HotelsScreen()),
                 ResourcesWidget("Events", Icons.event_outlined, EventScreen()),
               ]),

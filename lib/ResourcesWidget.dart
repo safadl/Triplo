@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'RestaurantsScreen.dart';
-
-class ResourcesWidget extends StatelessWidget {
+class ResourcesWidget extends StatefulWidget {
   final String title;
   final IconData icon;
   final Object resource;
 
   const ResourcesWidget(this.title, this.icon, this.resource);
+
+  @override
+  State<ResourcesWidget> createState() => _ResourcesWidgetState();
+}
+
+class _ResourcesWidgetState extends State<ResourcesWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,7 +35,7 @@ class ResourcesWidget extends StatelessWidget {
           child: InkWell(
             onTap: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => resource))
+                  builder: (BuildContext context) => widget.resource))
             },
             child: Container(
               child: Center(
@@ -39,10 +43,10 @@ class ResourcesWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Column(
                     children: [
-                      Icon(this.icon, color: Colors.grey[700]),
+                      Icon(this.widget.icon, color: Colors.grey[700]),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(this.title),
+                        child: Text(this.widget.title),
                       )
                     ],
                   ),

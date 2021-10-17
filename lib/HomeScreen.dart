@@ -1,17 +1,17 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-import 'package:search_widget/search_widget.dart';
 import 'package:travel_app/FerriesScreen.dart';
-
+import 'CityDescription.dart';
 import 'CustomDrawer.dart';
 import 'FlightScreen.dart';
 import 'HotPlace.dart';
-import 'Hotel.dart';
 import 'HotelsScreen.dart';
 import 'RelevantPlace.dart';
 import 'TrainsScreen.dart';
 import 'appBar.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -27,6 +27,29 @@ const dark_color = const Color(0xff232323);
 const dark_pink = const Color(0xfff29d9d);
 
 class _HomeScreenState extends State<HomeScreen> {
+  var cityItems = [];
+  final baseurl = "http://192.168.64.246:8000/";
+  @override
+  void initState() {
+    super.initState();
+    this.getJSONData();
+  }
+
+  Future<void> getJSONData() async {
+    var url = Uri.parse("http://192.168.64.246:8000/api/cities/getAll");
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(response.body);
+      this.setState(() {
+        cityItems = jsonResponse;
+      });
+
+      print('items got: ' + this.cityItems[0]['cityName']);
+    } else {
+      print("Request failed");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -370,23 +393,53 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: TextStyle(fontSize: 25, color: green_color)),
                       ),
                     ),
+
                     SizedBox(height: 10),
                     Flexible(
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.23,
                         // width: 250,
-                        child: ListView(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            RelevantPlace('Rome', "Italy",
-                                "https://a.cdn-hotels.com/cos/heroimage/Rome_0_110843582.jpg?impolicy=fcrop&w=536&h=384&q=high"),
-                            RelevantPlace("Paris", "France",
-                                "https://res.cloudinary.com/hzekpb1cg/image/upload/c_fill,h_410,w_800,f_auto/s3/public/prod/2019-02/Paris.jpg"),
-                            RelevantPlace("New York City", "USA",
-                                "https://www.nyc.fr/wp-content/uploads/2015/07/New_York_City.jpg"),
-                          ],
-                        ),
+                        child: ListView.builder(
+                            itemCount: cityItems.length,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          CityDescription(
+                                              cityItems[index]['cityName'],
+                                              baseurl +
+                                                  cityItems[index]['cityImage']
+                                                      .replaceAll("\\", "/"),
+                                              cityItems[index]['countryName'],
+                                              4,
+                                              cityItems[index]
+                                                  ['cityDescription'],
+                                              "djhf"),
+                                    ),
+                                  );
+                                },
+                                child: RelevantPlace(
+                                  cityItems[index]['cityName'],
+                                  cityItems[index]['countryName'],
+                                  baseurl +
+                                      cityItems[index]['cityImage']
+                                          .replaceAll("\\", "/"),
+                                ),
+                              );
+                            }
+                            // children: [
+                            //   RelevantPlace('Rome', "Italy",
+                            //       "https://a.cdn-hotels.com/cos/heroimage/Rome_0_110843582.jpg?impolicy=fcrop&w=536&h=384&q=high"),
+                            //   RelevantPlace("Paris", "France",
+                            //       "https://res.cloudinary.com/hzekpb1cg/image/upload/c_fill,h_410,w_800,f_auto/s3/public/prod/2019-02/Paris.jpg"),
+                            //   RelevantPlace("New York City", "USA",
+                            //       "https://www.nyc.fr/wp-content/uploads/2015/07/New_York_City.jpg"),
+                            // ],
+                            ),
                       ),
                     ),
                     SizedBox(height: 18),
@@ -404,18 +457,27 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.25,
                         // width: 250,
-                        child: ListView(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            HotPlace('Bali', 'Indonesia', '700',
-                                "https://pix10.agoda.net/hotelImages/68310/-1/459412f7142ccf9578e5fd075aee86ee.jpg?s=1024x768"),
-                            HotPlace("Miami", 'USA', '1200',
-                                "https://images.theconversation.com/files/413417/original/file-20210727-19-aghe22.jpg?ixlib=rb-1.1.0&rect=0%2C7%2C5138%2C3404&q=45&auto=format&w=496&fit=clip"),
-                            HotPlace("Tokyo", 'Japan', '900',
-                                "https://stillmed.olympics.com/media/Images/OlympicOrg/News/2019/07/23/2019-07-23-Trailblazing-Tokyo-looking-ahead-featured.jpg?interpolation=lanczos-none&resize=3840:1600"),
-                          ],
-                        ),
+                        child: ListView.builder(
+                            itemCount: cityItems.length,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return HotPlace(
+                                cityItems[index]['cityName'],
+                                cityItems[index]['countryName'],
+                                '700',
+                                baseurl +
+                                    cityItems[index]['cityImage']
+                                        .replaceAll("\\", "/"),
+                              );
+                            }),
+
+                        // HotPlace('Bali', 'Indonesia', '700',
+                        //     "https://pix10.agoda.net/hotelImages/68310/-1/459412f7142ccf9578e5fd075aee86ee.jpg?s=1024x768"),
+                        // HotPlace("Miami", 'USA', '1200',
+                        //     "https://images.theconversation.com/files/413417/original/file-20210727-19-aghe22.jpg?ixlib=rb-1.1.0&rect=0%2C7%2C5138%2C3404&q=45&auto=format&w=496&fit=clip"),
+                        // HotPlace("Tokyo", 'Japan', '900',
+                        //     "https://stillmed.olympics.com/media/Images/OlympicOrg/News/2019/07/23/2019-07-23-Trailblazing-Tokyo-looking-ahead-featured.jpg?interpolation=lanczos-none&resize=3840:1600"),
                       ),
                     ),
                   ],

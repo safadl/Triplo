@@ -4,6 +4,8 @@ import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'CustomDrawer.dart';
 import 'Hotel.dart';
 import 'appBar.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 const green_color = const Color(0xff64c7d0);
 const dark_color = const Color(0xff232323);
@@ -14,6 +16,29 @@ class HotelsScreen extends StatefulWidget {
 }
 
 class _HotelsScreenState extends State<HotelsScreen> {
+  var hotelItems = [];
+  final baseurl = "http://192.168.254.196:8000/";
+  @override
+  void initState() {
+    super.initState();
+    this.getJSONData();
+  }
+
+  Future<void> getJSONData() async {
+    var url = Uri.parse("http://192.168.254.196:8000/api/hotels/getAll");
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(response.body);
+      this.setState(() {
+        hotelItems = jsonResponse;
+      });
+
+      print('items got: ' + this.hotelItems[0]['cityName']);
+    } else {
+      print("Request failed");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -85,8 +110,6 @@ class _HotelsScreenState extends State<HotelsScreen> {
               ),
             ),
           ),
-          //  SizedBox(height: 20),
-
           Container(
             // decoration: BoxDecoration(color: Colors.red),
             height: MediaQuery.of(context).size.height * 0.81,

@@ -4,19 +4,46 @@ import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'CustomDrawer.dart';
 import 'Restaurant.dart';
 import 'appBar.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 const green_color = const Color(0xff64c7d0);
 const dark_color = const Color(0xff232323);
 
 class RestaurantScreen extends StatefulWidget {
+  final String city;
+  RestaurantScreen(this.city);
   @override
   _RestaurantsScreenState createState() => _RestaurantsScreenState();
 }
 
 class _RestaurantsScreenState extends State<RestaurantScreen> {
+  List restoItems = [];
+  final baseurl = "http://192.168.64.246:8000/";
+
+  void initState() {
+    super.initState();
+    this.getJSONData();
+    print(this.widget.city);
+  }
+
+  Future<void> getJSONData() async {
+    var url = Uri.parse("http://192.168.64.246:8000/api/restos/getAll");
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(response.body);
+      this.setState(() {
+        this.restoItems = jsonResponse;
+      });
+
+      print('items successfully stored ');
+    } else {
+      print("Request failed");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     final isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
@@ -46,16 +73,7 @@ class _RestaurantsScreenState extends State<RestaurantScreen> {
                     width: isPortrait ? 600 : 500,
                     debounceDelay: const Duration(milliseconds: 500),
                     onQueryChanged: (query) {},
-
                     actions: [
-                      // FloatingSearchBarAction(
-                      //   showIfOpened: false,
-                      //   child: CircularButton(
-                      //     icon: const Icon(Icons.search_outlined,
-                      //         color: green_color),
-                      //     onPressed: () {},
-                      //   ),
-                      // ),
                       FloatingSearchBarAction.searchToClear(
                         showIfClosed: true,
                       ),
@@ -89,31 +107,23 @@ class _RestaurantsScreenState extends State<RestaurantScreen> {
           Container(
             // decoration: BoxDecoration(color: Colors.red),
             height: MediaQuery.of(context).size.height * 0.81,
-            child: ListView(
+            child: ListView.builder(
+              itemCount: restoItems.length,
               shrinkWrap: true,
               // scrollDirection: Axis.horizontal,
-              children: [
-                Restaurant(
-                    title: 'Trattoria Monti',
-                    location: "Via della Vite, 28, Rome",
-                    image:
-                        'https://media-cdn.tripadvisor.com/media/photo-m/1280/18/19/1a/a8/restaurant-el-borj.jpg'),
-                Restaurant(
-                    title: "CiPASSO Bistrot",
-                    location: "Via della Vite, 28, Rome",
-                    image:
-                        'https://media-cdn.tripadvisor.com/media/photo-s/19/ca/bd/ac/l-espace-du-restaurant.jpg'),
-                Restaurant(
-                    title: "Pane e Salame",
-                    location: "Via della Vite, 28, Rome",
-                    image:
-                        'https://www.marhba.com/images/lifestyle/lifestyle2020/restogastrotunis/ROOFTOP360LAMARSA.jpg'),
-                Restaurant(
-                    title: "Ambrosia Rooftop",
-                    location: "Via della Vite, 28, Rome",
-                    image:
-                        'https://www.marhba.com/images/lifestyle/lifestyle2020/restogastrotunis/LeGolfe.jpg'),
-              ],
+              itemBuilder: (context, index) {
+                print("city item index" + restoItems[index]['cityName']);
+
+                return (this.widget.city == restoItems[index]['cityName']
+                    ? Restaurant(
+                        title: restoItems[index]['restoName'],
+                        location: restoItems[index]['loca'],
+                        image: baseurl +
+                            restoItems[index]['restoImage']
+                                .replaceAll("\\", "/"),
+                      )
+                    : null);
+              },
             ),
           ),
         ],
