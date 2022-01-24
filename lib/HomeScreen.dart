@@ -1,14 +1,16 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-import 'package:travel_app/FerriesScreen.dart';
-import 'CityDescription.dart';
+
+import 'City/CityDescription.dart';
+import 'City/HotPlace.dart';
+import 'City/RelevantPlace.dart';
 import 'CustomDrawer.dart';
-import 'FlightScreen.dart';
-import 'HotPlace.dart';
-import 'HotelsScreen.dart';
-import 'RelevantPlace.dart';
-import 'TrainsScreen.dart';
+
+import 'Ferry/FerriesScreen.dart';
+import 'Flight/FlightScreen.dart';
+import 'Hotel/HotelsScreen.dart';
+import 'Train/TrainsScreen.dart';
 import 'appBar.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
@@ -28,7 +30,7 @@ const dark_pink = const Color(0xfff29d9d);
 
 class _HomeScreenState extends State<HomeScreen> {
   var cityItems = [];
-  final baseurl = "http://192.168.64.246:8000/";
+  final baseurl = "http://192.168.1.17:8000/";
   @override
   void initState() {
     super.initState();
@@ -36,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> getJSONData() async {
-    var url = Uri.parse("http://192.168.64.246:8000/api/cities/getAll");
+    var url = Uri.parse("http://192.168.1.17:8000/api/cities/getAll");
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
@@ -66,11 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
           index: 1,
           height: 50,
           backgroundColor: Color(0x00ffffff),
-          color: Color(0xccffffff),
+          color: Color(0xffa873ff),
           items: <Widget>[
-            Icon(Icons.settings, size: 30),
-            Icon(Icons.home, size: 30),
-            Icon(Icons.compare_arrows, size: 30),
+            Icon(Icons.settings, size: 30, color: Colors.white),
+            Icon(Icons.home, size: 30, color: Colors.white),
+            Icon(Icons.person, size: 30, color: Colors.white),
           ],
           onTap: (index) {
             //Handle button tap

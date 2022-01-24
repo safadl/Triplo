@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sign_button/sign_button.dart';
+import 'package:travel_app/HomeScreen.dart';
+import 'package:travel_app/services/authservice.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 const rose_color = const Color(0xffffebeb);
 const purple_color = const Color(0xff838ac5);
@@ -15,6 +20,25 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginState extends State<LoginScreen> {
+  bool _isLoggedIn = false;
+  Map _userObj = {};
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
+  Future<void> _handleSignIn() async {
+    try {
+      await _googleSignIn.signIn();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  final passController = TextEditingController();
+  final userController = TextEditingController();
+  var token;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,11 +62,34 @@ class _LoginState extends State<LoginScreen> {
                   children: [
                     SignInButton.mini(
                       buttonType: ButtonType.facebook,
-                      onPressed: () {},
+                      onPressed: () async {
+                        FacebookAuth.instance.login().then((value) {
+                          FacebookAuth.instance.getUserData().then((userData) {
+                            setState(() {
+                              _isLoggedIn = true;
+                              _userObj = userData;
+                            });
+                          });
+                        });
+
+                        if (_isLoggedIn) {
+                          print('logged in');
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => HomeScreen()));
+                        } else {
+                          print('not logged in');
+                          Container();
+                        }
+                      },
                     ),
                     SignInButton.mini(
                       buttonType: ButtonType.google,
-                      onPressed: () {},
+                      onPressed: () {
+                        _handleSignIn().then((e) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => HomeScreen()));
+                        });
+                      },
                     ),
                   ],
                 ),
@@ -61,13 +108,14 @@ class _LoginState extends State<LoginScreen> {
                         TextField(
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.email_outlined),
+                            prefixIcon: Icon(Icons.person_outline),
                             filled: true,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(13),
                                 borderSide: BorderSide.none),
-                            hintText: 'Email',
+                            hintText: 'Username',
                           ),
+                          controller: userController,
                         ),
                         TextField(
                           obscureText: true,
@@ -83,6 +131,7 @@ class _LoginState extends State<LoginScreen> {
                             hintText: 'Password',
                           ),
                           obscuringCharacter: '*',
+                          controller: passController,
                         ),
                         GestureDetector(
                           onTap: () {
@@ -91,7 +140,7 @@ class _LoginState extends State<LoginScreen> {
                           child: Text('Forgot your password?',
                               style: TextStyle(color: green_color)),
                         ),
-                        SizedBox(height: 160),
+                        SizedBox(height: 140),
                         Center(
                           child: SizedBox(
                             width: 150.0,
@@ -99,7 +148,24 @@ class _LoginState extends State<LoginScreen> {
                             child: ElevatedButton(
                               child: Text('SIGN IN',
                                   style: TextStyle(fontSize: 18)),
-                              onPressed: () {},
+                              onPressed: () {
+                                AuthService()
+                                    .login(userController.text.toString(),
+                                        passController.text.toString())
+                                    .then((val) {
+                                  if (val) {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                HomeScreen()));
+                                  }
+                                });
+
+                                //   .then((val) {
+                                // if (val.body['success']) {
+                                //   print('success');
+                                // }
+                              },
                               style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(

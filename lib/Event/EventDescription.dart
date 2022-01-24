@@ -1,25 +1,31 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'CustomDrawer.dart';
-
-import 'AmenityWidget.dart';
-import 'appBar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../CustomDrawer.dart';
+import '../appBar.dart';
 
 const dark_color = const Color(0xff232323);
 const coral_color = const Color(0xffff868f);
 const green_color = const Color(0xff64c7d0);
 
-class HotelDescription extends StatefulWidget {
+class EventDescription extends StatefulWidget {
+  final String eventName;
+  final String eventImg;
+  final String loc;
+  final double rating;
+  final String details;
+
+  EventDescription(
+      this.eventName, this.eventImg, this.loc, this.rating, this.details);
+
   @override
-  _HotelDescriptionState createState() => _HotelDescriptionState();
+  _EventDescriptionState createState() => _EventDescriptionState();
 }
 
-class _HotelDescriptionState extends State<HotelDescription> {
+class _EventDescriptionState extends State<EventDescription> {
   // Completer<GoogleMapController> _controller = Completer();
   // static final CameraPosition _kGooglePlex = CameraPosition(
   //   target: LatLng(37.42796133580664, -122.085749655962),
@@ -54,7 +60,7 @@ class _HotelDescriptionState extends State<HotelDescription> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Hotel Marsala',
+                this.widget.eventName,
                 style: GoogleFonts.aBeeZee(fontSize: 27, color: dark_color),
               ),
               SizedBox(height: 10),
@@ -62,7 +68,7 @@ class _HotelDescriptionState extends State<HotelDescription> {
                 children: [
                   Icon(Icons.location_on_outlined, color: coral_color),
                   Text(
-                    'Rue 8, Rome,Italy',
+                    this.widget.loc,
                     style: GoogleFonts.aBeeZee(fontSize: 15, color: dark_color),
                   )
                 ],
@@ -70,18 +76,8 @@ class _HotelDescriptionState extends State<HotelDescription> {
               SizedBox(height: 15),
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Image.network(
-                  'https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg',
-                ),
+                child: Image.network(this.widget.eventImg),
               ),
-              SizedBox(height: 25),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                AmenityWidget('Wi-fi', Icons.wifi_outlined),
-                AmenityWidget('Spa', Icons.spa_outlined),
-                AmenityWidget('Pool', Icons.pool_outlined),
-                AmenityWidget('Bar', Icons.local_bar_outlined),
-                AmenityWidget('Parking', Icons.local_parking_outlined),
-              ]),
               SizedBox(height: 20),
               Text(
                 'Details',
@@ -89,7 +85,7 @@ class _HotelDescriptionState extends State<HotelDescription> {
               ),
               SizedBox(height: 4),
               Text(
-                "Welcome to the Hotel Marsala Roma, a charming 2 star hotel offering all modern comforts at a great price to suit all budgets. Hotel Marsala Roma is located right in the heart of the city, 100 meters from the main Termini train station and with all of Rome's most historic monuments within easy reach",
+                this.widget.details,
                 maxLines: 4,
                 style: GoogleFonts.notoSans(
                     fontSize: 15, color: dark_color, height: 2),
@@ -124,7 +120,7 @@ class _HotelDescriptionState extends State<HotelDescription> {
               ),
               RatingBar.builder(
                 itemSize: 18,
-                initialRating: 3.5,
+                initialRating: this.widget.rating,
                 minRating: 1,
                 direction: Axis.horizontal,
                 allowHalfRating: true,
@@ -165,7 +161,7 @@ class _HotelDescriptionState extends State<HotelDescription> {
                               fontWeight: FontWeight.w600),
                         ),
                         Text(
-                            'This hotel is clean. I enjoyed my stay here \n with my family. ')
+                            'This Event is clean. I enjoyed my stay here \n with my family. ')
                       ],
                     ),
                   ),

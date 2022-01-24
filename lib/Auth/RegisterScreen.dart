@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sign_button/sign_button.dart';
 import 'package:rive/rive.dart';
+import 'package:travel_app/services/authservice.dart';
 
 const rose_color = const Color(0xffffebeb);
 const purple_color = const Color(0xff838ac5);
@@ -10,6 +12,7 @@ const pink_color = const Color(0xffffcece);
 const coral_color = const Color(0xffff868f);
 const dark_color = const Color(0xff232323);
 const dark_pink = const Color(0xfff29d9d);
+var token;
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -17,6 +20,20 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterState extends State<RegisterScreen> {
+  final passController = TextEditingController();
+  final emailController = TextEditingController();
+  final userController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    passController.dispose();
+    userController.dispose();
+    emailController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,24 +62,24 @@ class _RegisterState extends State<RegisterScreen> {
                       fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: 50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SignInButton.mini(
-                      buttonType: ButtonType.facebook,
-                      onPressed: () {},
-                    ),
-                    SignInButton.mini(
-                      buttonType: ButtonType.google,
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-                SizedBox(height: 50),
-                Text(
-                  'or use your e-mail for registration',
-                  style: TextStyle(color: Colors.grey.shade500),
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     SignInButton.mini(
+                //       buttonType: ButtonType.facebook,
+                //       onPressed: () {},
+                //     ),
+                //     SignInButton.mini(
+                //       buttonType: ButtonType.google,
+                //       onPressed: () {},
+                //     ),
+                //   ],
+                // ),
+                // SizedBox(height: 50),
+                // Text(
+                //   'or use your e-mail for registration',
+                //   style: TextStyle(color: Colors.grey.shade500),
+                // ),
                 SizedBox(height: 20),
                 Expanded(
                   child: Padding(
@@ -80,6 +97,7 @@ class _RegisterState extends State<RegisterScreen> {
                                 borderSide: BorderSide.none),
                             hintText: 'Name',
                           ),
+                          controller: userController,
                         ),
                         TextField(
                           textInputAction: TextInputAction.next,
@@ -91,6 +109,7 @@ class _RegisterState extends State<RegisterScreen> {
                                 borderSide: BorderSide.none),
                             hintText: 'Email',
                           ),
+                          controller: emailController,
                         ),
                         TextField(
                           obscureText: true,
@@ -106,6 +125,7 @@ class _RegisterState extends State<RegisterScreen> {
                             hintText: 'Password',
                           ),
                           obscuringCharacter: '*',
+                          controller: passController,
                         ),
                         SizedBox(height: 100),
                         Center(
@@ -117,6 +137,11 @@ class _RegisterState extends State<RegisterScreen> {
                                   style: TextStyle(fontSize: 18)),
                               onPressed: () {
                                 // Navigator.pushNamed(context, 'login');
+                                print('my usernamen is' + userController.text);
+                                AuthService().register(
+                                    userController.text.toString(),
+                                    passController.text.toString(),
+                                    emailController.text.toString());
                               },
                               style: ButtonStyle(
                                 backgroundColor:

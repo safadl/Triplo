@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/Hotel/HotelDescription.dart';
 
-import 'HotelDescription.dart';
 import 'package:vertical_card_pager/vertical_card_pager.dart';
+
+import 'EventDescription.dart';
 
 const green_color = const Color(0xff64c7d0);
 const coral_color = const Color(0xffff868f);
@@ -80,7 +82,13 @@ class _EventState extends State<Event> {
         child: InkWell(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => HotelDescription()));
+                builder: (BuildContext context) => EventDescription(
+                      "Music Festival",
+                      "https://media.vanityfair.com/photos/5e6921443b2c6a0008bf5b20/master/w_2560%2Cc_limit/FestivalCancellations-2020-GettyImages-174725380.jpg",
+                      "12th street,Main Street, Rome, Italy",
+                      3.5,
+                      "You will have the time of your life here. Many musicians and singers gather at the same place for one night to perform their best songs.",
+                    )));
           },
           child: Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,

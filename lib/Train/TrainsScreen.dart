@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'CustomDrawer.dart';
+
 import 'package:date_field/date_field.dart';
-import 'FerrieResult.dart';
+
+import '../CustomDrawer.dart';
+import 'TrainResult.dart';
 
 // import 'appBar.dart';
 
@@ -9,12 +11,12 @@ const green_color = const Color(0xff64c7d0);
 const dark_color = const Color(0xff232323);
 var now = DateTime.now();
 
-class FerriesScreen extends StatefulWidget {
+class TrainScreen extends StatefulWidget {
   @override
-  _FerriesScreenState createState() => _FerriesScreenState();
+  _TrainScreenState createState() => _TrainScreenState();
 }
 
-class _FerriesScreenState extends State<FerriesScreen> {
+class _TrainScreenState extends State<TrainScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -27,7 +29,7 @@ class _FerriesScreenState extends State<FerriesScreen> {
         appBar: AppBar(
             backgroundColor: coral_color,
             centerTitle: true,
-            title: Text("Ferries"),
+            title: Text("Trains"),
             bottom: TabBar(tabs: [
               Tab(
                 child: Container(
@@ -180,11 +182,11 @@ class _FerriesScreenState extends State<FerriesScreen> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    FerrieResult(),
+                                    TrainResult(),
                               ),
                             );
                           },
-                          child: Text('search ferries'),
+                          child: Text('search trains'),
                         ),
                       ),
                     ),
@@ -368,11 +370,11 @@ class _FerriesScreenState extends State<FerriesScreen> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    FerrieResult(),
+                                    TrainResult(),
                               ),
                             );
                           },
-                          child: Text('search ferries'),
+                          child: Text('search trains'),
                         ),
                       ),
                     ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'CustomDrawer.dart';
+import '../CustomDrawer.dart';
 import 'FerryWidget.dart';
 
 const green_color = const Color(0xff64c7d0);
@@ -15,13 +15,13 @@ class _FerrieResultState extends State<FerrieResult> {
     FerryWidget(
         departure: "21:00",
         arrival: "22:00",
-        departureAir: "Orly",
-        arrivalAir: "JFK"),
+        departureAir: "Tokyo",
+        arrivalAir: "Milan"),
     FerryWidget(
         departure: "20:00",
         arrival: "23:35",
-        departureAir: "Orly",
-        arrivalAir: "Newark"),
+        departureAir: "Tokyo",
+        arrivalAir: "Milan"),
   ];
 
   @override

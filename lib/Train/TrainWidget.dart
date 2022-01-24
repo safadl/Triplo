@@ -43,7 +43,7 @@ class _TrainWidgetState extends State<TrainWidget> {
                       style: TextStyle(fontSize: 30, color: Colors.black),
                     ),
                     Text(
-                      'Orly',
+                      'Tokyo',
                       style: TextStyle(fontSize: 18, color: Colors.black),
                     ),
                   ],
@@ -58,7 +58,7 @@ class _TrainWidgetState extends State<TrainWidget> {
                       style: TextStyle(fontSize: 30, color: Colors.black),
                     ),
                     Text(
-                      'Newark',
+                      'Milan',
                       style: TextStyle(fontSize: 18, color: Colors.black),
                     ),
                   ],

@@ -1,25 +1,7 @@
-// import 'package:flutter/material.dart';
-
-// class FlightScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Container(),
-//     );
-//   }
-// }
-
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-
-import 'Flight.dart';
-import 'CustomDrawer.dart';
+import '../CustomDrawer.dart';
 import 'package:date_field/date_field.dart';
-
-import 'package:http/http.dart' as http;
-
-import 'FlightResult.dart';
+import 'FerrieResult.dart';
 
 // import 'appBar.dart';
 
@@ -27,27 +9,12 @@ const green_color = const Color(0xff64c7d0);
 const dark_color = const Color(0xff232323);
 var now = DateTime.now();
 
-class FlightScreen extends StatefulWidget {
+class FerriesScreen extends StatefulWidget {
   @override
-  _FlightScreenState createState() => _FlightScreenState();
+  _FerriesScreenState createState() => _FerriesScreenState();
 }
 
-class _FlightScreenState extends State<FlightScreen> {
-  Future<Flight> fetchFlight() async {
-    final response = await http
-        .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
-
-    if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      return Flight.fromJson(jsonDecode(response.body));
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to load album');
-    }
-  }
-
+class _FerriesScreenState extends State<FerriesScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -58,9 +25,9 @@ class _FlightScreenState extends State<FlightScreen> {
         resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-            backgroundColor: green_color,
+            backgroundColor: coral_color,
             centerTitle: true,
-            title: Text("Flights"),
+            title: Text("Ferries"),
             bottom: TabBar(tabs: [
               Tab(
                 child: Container(
@@ -71,7 +38,7 @@ class _FlightScreenState extends State<FlightScreen> {
                   ),
                   child: Text(
                     "One way",
-                    style: TextStyle(color: green_color),
+                    style: TextStyle(color: coral_color),
                   ),
                 ),
               ),
@@ -84,7 +51,7 @@ class _FlightScreenState extends State<FlightScreen> {
                   ),
                   child: Text(
                     "Roundtrip",
-                    style: TextStyle(color: green_color),
+                    style: TextStyle(color: coral_color),
                   ),
                 ),
               ),
@@ -110,7 +77,7 @@ class _FlightScreenState extends State<FlightScreen> {
                       width: MediaQuery.of(context).size.width * 0.85,
                       child: TextField(
                         decoration: new InputDecoration(
-                            hintText: 'Tokyo, Japan',
+                            hintText: 'Marseille, France',
                             filled: true,
                             border: InputBorder.none),
                       ),
@@ -207,17 +174,17 @@ class _FlightScreenState extends State<FlightScreen> {
                         child: ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(green_color)),
+                                  MaterialStateProperty.all(coral_color)),
                           onPressed: () {
                             // fetchFlight();
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    FlightResult(),
+                                    FerrieResult(),
                               ),
                             );
                           },
-                          child: Text('search flights'),
+                          child: Text('search ferries'),
                         ),
                       ),
                     ),
@@ -396,16 +363,16 @@ class _FlightScreenState extends State<FlightScreen> {
                         child: ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(green_color)),
+                                  MaterialStateProperty.all(coral_color)),
                           onPressed: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    FlightResult(),
+                                    FerrieResult(),
                               ),
                             );
                           },
-                          child: Text('search flights'),
+                          child: Text('search ferries'),
                         ),
                       ),
                     ),

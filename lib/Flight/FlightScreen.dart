@@ -1,7 +1,25 @@
+// import 'package:flutter/material.dart';
+
+// class FlightScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Container(),
+//     );
+//   }
+// }
+
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:travel_app/TrainResult.dart';
-import 'CustomDrawer.dart';
+
+import '../CustomDrawer.dart';
+import 'Flight.dart';
 import 'package:date_field/date_field.dart';
+
+import 'package:http/http.dart' as http;
+
+import 'FlightResult.dart';
 
 // import 'appBar.dart';
 
@@ -9,12 +27,27 @@ const green_color = const Color(0xff64c7d0);
 const dark_color = const Color(0xff232323);
 var now = DateTime.now();
 
-class TrainScreen extends StatefulWidget {
+class FlightScreen extends StatefulWidget {
   @override
-  _TrainScreenState createState() => _TrainScreenState();
+  _FlightScreenState createState() => _FlightScreenState();
 }
 
-class _TrainScreenState extends State<TrainScreen> {
+class _FlightScreenState extends State<FlightScreen> {
+  Future<Flight> fetchFlight() async {
+    final response = await http
+        .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return Flight.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load album');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -25,9 +58,9 @@ class _TrainScreenState extends State<TrainScreen> {
         resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-            backgroundColor: coral_color,
+            backgroundColor: green_color,
             centerTitle: true,
-            title: Text("Trains"),
+            title: Text("Flights"),
             bottom: TabBar(tabs: [
               Tab(
                 child: Container(
@@ -38,7 +71,7 @@ class _TrainScreenState extends State<TrainScreen> {
                   ),
                   child: Text(
                     "One way",
-                    style: TextStyle(color: coral_color),
+                    style: TextStyle(color: green_color),
                   ),
                 ),
               ),
@@ -51,7 +84,7 @@ class _TrainScreenState extends State<TrainScreen> {
                   ),
                   child: Text(
                     "Roundtrip",
-                    style: TextStyle(color: coral_color),
+                    style: TextStyle(color: green_color),
                   ),
                 ),
               ),
@@ -77,7 +110,7 @@ class _TrainScreenState extends State<TrainScreen> {
                       width: MediaQuery.of(context).size.width * 0.85,
                       child: TextField(
                         decoration: new InputDecoration(
-                            hintText: 'Marseille, France',
+                            hintText: 'Tokyo, Japan',
                             filled: true,
                             border: InputBorder.none),
                       ),
@@ -174,17 +207,17 @@ class _TrainScreenState extends State<TrainScreen> {
                         child: ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(coral_color)),
+                                  MaterialStateProperty.all(green_color)),
                           onPressed: () {
                             // fetchFlight();
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    TrainResult(),
+                                    FlightResult(),
                               ),
                             );
                           },
-                          child: Text('search trains'),
+                          child: Text('search flights'),
                         ),
                       ),
                     ),
@@ -363,16 +396,16 @@ class _TrainScreenState extends State<TrainScreen> {
                         child: ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(coral_color)),
+                                  MaterialStateProperty.all(green_color)),
                           onPressed: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    TrainResult(),
+                                    FlightResult(),
                               ),
                             );
                           },
-                          child: Text('search trains'),
+                          child: Text('search flights'),
                         ),
                       ),
                     ),

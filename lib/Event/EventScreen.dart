@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
-import 'CustomDrawer.dart';
+import '../CustomDrawer.dart';
 import 'Event.dart';
 // import 'appBar.dart';
 
@@ -78,22 +78,22 @@ class _EventScreenState extends State<EventScreen> {
                   // scrollDirection: Axis.horizontal,
                   children: [
                     Event(
-                        title: 'Trattoria Monti',
+                        title: 'Concert of the Century',
                         location: "Via della Vite, 28, Rome",
                         image:
                             'https://media-cdn.tripadvisor.com/media/photo-m/1280/18/19/1a/a8/restaurant-el-borj.jpg'),
                     Event(
-                        title: "CiPASSO Bistrot",
+                        title: "CiPASSO Fest",
                         location: "Via della Vite, 28, Rome",
                         image:
                             'https://media-cdn.tripadvisor.com/media/photo-s/19/ca/bd/ac/l-espace-du-restaurant.jpg'),
                     Event(
-                        title: "Pane e Salame",
+                        title: "Music on the Ocean",
                         location: "Via della Vite, 28, Rome",
                         image:
                             'https://www.marhba.com/images/lifestyle/lifestyle2020/restogastrotunis/ROOFTOP360LAMARSA.jpg'),
                     Event(
-                        title: "Ambrosia Rooftop",
+                        title: "Music Fest",
                         location: "Via della Vite, 28, Rome",
                         image:
                             'https://www.marhba.com/images/lifestyle/lifestyle2020/restogastrotunis/LeGolfe.jpg'),

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Triplo</string>
+
+     <string name="facebook_app_id">1188487588348390</string>
+    <string name="fb_login_protocol_scheme">fb1188487588348390</string>
+    <string name="facebook_client_token">bc379db0e4509d1d4ec2325ec18dfd8e</string>
+</resources>

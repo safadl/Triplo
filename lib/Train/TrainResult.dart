@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 
-import 'CustomDrawer.dart';
-import 'FlightWidget.dart';
+import '../CustomDrawer.dart';
+import 'TrainWidget.dart';
 
 const green_color = const Color(0xff64c7d0);
 
-class FlightResult extends StatefulWidget {
+class TrainResult extends StatefulWidget {
   @override
-  _FlightResultState createState() => _FlightResultState();
+  _TrainResultState createState() => _TrainResultState();
 }
 
-class _FlightResultState extends State<FlightResult> {
-  List<FlightWidget> items = [
-    FlightWidget(
+class _TrainResultState extends State<TrainResult> {
+  List<TrainWidget> items = [
+    TrainWidget(
         departure: "21:00",
         arrival: "22:00",
-        departureAir: "Orly",
-        arrivalAir: "JFK"),
-    FlightWidget(
+        departureAir: "Tokyo",
+        arrivalAir: "Milan"),
+    TrainWidget(
         departure: "20:00",
         arrival: "23:35",
-        departureAir: "Orly",
-        arrivalAir: "Newark"),
+        departureAir: "Tokyo",
+        arrivalAir: "Milan"),
   ];
 
   @override
@@ -33,7 +33,7 @@ class _FlightResultState extends State<FlightResult> {
         appBar: AppBar(
           backgroundColor: green_color,
           centerTitle: true,
-          title: Text("Paris" + " To " + "NYC"),
+          title: Text("Tokyo" + " To " + "Milan"),
         ),
         body: ListView.builder(
           itemCount: items.length,

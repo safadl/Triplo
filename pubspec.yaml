@@ -41,6 +41,10 @@ dependencies:
   vertical_card_pager: ^1.0.0
   date_field: ^2.1.2
   http: ^0.13.4
+  dio: any
+  fluttertoast: ^8.0.8
+  flutter_facebook_auth: ^4.0.1
+  google_sign_in: ^5.2.3
 
 
 

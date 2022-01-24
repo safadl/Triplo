@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'CustomDrawer.dart';
-
-import 'EventScreen.dart';
-import 'HotelsScreen.dart';
-import 'ResourcesWidget.dart';
-
-import 'RestaurantsScreen.dart';
-import 'appBar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:travel_app/Event/EventScreen.dart';
+import 'package:travel_app/Hotel/HotelsScreen.dart';
+import 'package:travel_app/Restaurant/RestaurantsScreen.dart';
+
+import '../CustomDrawer.dart';
+import '../ResourcesWidget.dart';
+import '../appBar.dart';
 
 const dark_color = const Color(0xff232323);
 const coral_color = const Color(0xffff868f);
@@ -105,9 +104,9 @@ class _CityDescriptionState extends State<CityDescription> {
               ),
               SizedBox(height: 24),
               Text(
-                this.widget.description.toString(),
-                // " Rome is the capital city of Italy. It is also the capital of the Lazio region, the centre of the Metropolitan City of Rome, and a special comune named Comune di Roma Capitale. With 2,860,009 residents in 1,285 km2 (496.1 sq mi), Rome is the country's most populated comune and the third most populous city in the European Union by population within city limits. The Metropolitan City of Rome, with a population of 4,355,725 residents, is the most populous metropolitan city in Italy.Its metropolitan area is the third-most populous within Italy. Rome is located in the central-western portion of the Italian Peninsula, within Lazio (Latium), along the shores of the Tiber.",
-                // maxLines: 4,
+                // this.widget.description.toString(),
+                " Rome is the capital city of Italy. It is also the capital of the Lazio region, the centre of the Metropolitan City of Rome, and a special comune named Comune di Roma Capitale. With 2,860,009 residents in 1,285 km2 (496.1 sq mi), Rome is the country's most populated comune and the third most populous city in the European Union by population within city limits. The Metropolitan City of Rome, with a population of 4,355,725 residents, is the most populous metropolitan city in Italy.Its metropolitan area is the third-most populous within Italy. Rome is located in the central-western portion of the Italian Peninsula, within Lazio (Latium), along the shores of the Tiber.",
+                maxLines: 4,
                 style: GoogleFonts.notoSans(
                     fontSize: 15, color: dark_color, height: 2),
               ),

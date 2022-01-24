@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
-import 'CustomDrawer.dart';
+import '../CustomDrawer.dart';
+import '../appBar.dart';
 import 'Hotel.dart';
-import 'appBar.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
@@ -17,7 +17,7 @@ class HotelsScreen extends StatefulWidget {
 
 class _HotelsScreenState extends State<HotelsScreen> {
   var hotelItems = [];
-  final baseurl = "http://192.168.254.196:8000/";
+  final baseurl = "http://192.168.1.17:8000/";
   @override
   void initState() {
     super.initState();
@@ -25,7 +25,7 @@ class _HotelsScreenState extends State<HotelsScreen> {
   }
 
   Future<void> getJSONData() async {
-    var url = Uri.parse("http://192.168.254.196:8000/api/hotels/getAll");
+    var url = Uri.parse("http://192.168.1.17:8000/api/hotels/getAll");
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);

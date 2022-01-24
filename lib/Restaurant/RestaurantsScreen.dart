@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
-import 'CustomDrawer.dart';
+import '../CustomDrawer.dart';
+import '../appBar.dart';
 import 'Restaurant.dart';
-import 'appBar.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
@@ -19,7 +19,7 @@ class RestaurantScreen extends StatefulWidget {
 
 class _RestaurantsScreenState extends State<RestaurantScreen> {
   List restoItems = [];
-  final baseurl = "http://192.168.64.246:8000/";
+  final baseurl = "http://192.168.72.102:8000/";
 
   void initState() {
     super.initState();
@@ -28,7 +28,7 @@ class _RestaurantsScreenState extends State<RestaurantScreen> {
   }
 
   Future<void> getJSONData() async {
-    var url = Uri.parse("http://192.168.64.246:8000/api/restos/getAll");
+    var url = Uri.parse("http://192.168.72.102:8000/api/restos/getAll");
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
@@ -69,7 +69,6 @@ class _RestaurantsScreenState extends State<RestaurantScreen> {
                     transitionCurve: Curves.easeInOut,
                     physics: const BouncingScrollPhysics(),
                     axisAlignment: isPortrait ? 0.0 : -1.0,
-                    // openAxisAlignment: 0.0,
                     width: isPortrait ? 600 : 500,
                     debounceDelay: const Duration(milliseconds: 500),
                     onQueryChanged: (query) {},
@@ -105,24 +104,30 @@ class _RestaurantsScreenState extends State<RestaurantScreen> {
           //  SizedBox(height: 20),
 
           Container(
-            // decoration: BoxDecoration(color: Colors.red),
             height: MediaQuery.of(context).size.height * 0.81,
             child: ListView.builder(
               itemCount: restoItems.length,
               shrinkWrap: true,
-              // scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                print("city item index" + restoItems[index]['cityName']);
-
-                return (this.widget.city == restoItems[index]['cityName']
+                // print("city item index" + restoItems[index]['cityName']);
+                // print('index : ' +
+                //     index.toString() +
+                //     'item :' +
+                //     restoItems[index]['cityName']);
+                return this.widget.city == restoItems[index]['cityName']
                     ? Restaurant(
                         title: restoItems[index]['restoName'],
                         location: restoItems[index]['loca'],
                         image: baseurl +
                             restoItems[index]['restoImage']
                                 .replaceAll("\\", "/"),
-                      )
-                    : null);
+                        rating: restoItems[index]['rating'] == null
+                            ? 0.0
+                            : restoItems[index]['rating'].toDouble(),
+                        details: restoItems[index]['restoDetails'] == null
+                            ? ' No details yet.'
+                            : restoItems[index]['restoDetails'])
+                    : Container();
               },
             ),
           ),

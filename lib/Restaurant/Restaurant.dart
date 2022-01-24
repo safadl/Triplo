@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'HotelDescription.dart';
+import 'RestaurantDescription.dart';
 
 const green_color = const Color(0xff64c7d0);
 
@@ -9,8 +9,11 @@ class Restaurant extends StatefulWidget {
   final String image;
   final String title;
   final String location;
-  final String rating;
-  Restaurant({this.title, this.image, this.location, this.rating});
+  final double rating;
+  final String details;
+
+  Restaurant(
+      {this.title, this.image, this.location, this.rating, this.details});
 
   @override
   _RestaurantState createState() => _RestaurantState();
@@ -27,7 +30,12 @@ class _RestaurantState extends State<Restaurant> {
         child: InkWell(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => HotelDescription()));
+                builder: (BuildContext context) => RestaurantDescription(
+                    this.widget.title,
+                    this.widget.image,
+                    this.widget.location,
+                    this.widget.rating,
+                    this.widget.details)));
           },
           child: Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -64,7 +72,7 @@ class _RestaurantState extends State<Restaurant> {
                               children: [
                                 RatingBar.builder(
                                   itemSize: 10,
-                                  initialRating: 3,
+                                  initialRating: this.widget.rating,
                                   minRating: 1,
                                   direction: Axis.horizontal,
                                   allowHalfRating: true,

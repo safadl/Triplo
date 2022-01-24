@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'FlightScreen.dart';
-import 'ForgotPassword.dart';
+import 'Auth/ForgotPassword.dart';
+import 'Auth/LoginScreen.dart';
+import 'Auth/RegisterScreen.dart';
 import 'HomeScreen.dart';
-import 'RegisterScreen.dart';
 import 'SplashScreen.dart';
 import 'package:flutter/services.dart';
-
-import 'LoginScreen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -32,9 +30,9 @@ class MyApp extends StatelessWidget {
       },
       home:
           //  FlightScreen(),
-          HomeScreen(),
+          //HomeScreen(),
 
-      //  SplashScreen(),
+          SplashScreen(),
       // HotelsScreen()
       // home: SplashScreen(),
     );
