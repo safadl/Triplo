@@ -45,6 +45,10 @@ dependencies:
   fluttertoast: ^8.0.8
   flutter_facebook_auth: ^4.0.1
   google_sign_in: ^5.2.3
+  onesignal_flutter: ^3.0.0
+  easy_localization: ^3.0.0
+  shared_preferences_web: ^2.0.3
+  modal_bottom_sheet: ^2.0.0
 
 
 
@@ -85,6 +89,7 @@ flutter:
      - assets/mount1.jpg    
      - assets/mount2.jpg
      - assets/mount3.jpg
+     - assets/translations/
 
 
 

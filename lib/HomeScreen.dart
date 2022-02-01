@@ -1,6 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:travel_app/translations/locale_keys.g.dart';
 
 import 'City/CityDescription.dart';
 import 'City/HotPlace.dart';
@@ -60,27 +62,27 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       extendBody: true,
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: Color(0x00ffffff),
-        ),
-        child: CurvedNavigationBar(
-          index: 1,
-          height: 50,
-          backgroundColor: Color(0x00ffffff),
-          color: Color(0xffa873ff),
-          items: <Widget>[
-            Icon(Icons.settings, size: 30, color: Colors.white),
-            Icon(Icons.home, size: 30, color: Colors.white),
-            Icon(Icons.person, size: 30, color: Colors.white),
-          ],
-          onTap: (index) {
-            //Handle button tap
-            // setState(() {
-            // });
-          },
-        ),
-      ),
+      // bottomNavigationBar: Container(
+      //   decoration: BoxDecoration(
+      //     color: Color(0x00ffffff),
+      //   ),
+      //   child: CurvedNavigationBar(
+      //     index: 1,
+      //     height: 50,
+      //     backgroundColor: Color(0x00ffffff),
+      //     color: Color(0xfff2e6ff),
+      //     items: <Widget>[
+      //       Icon(Icons.settings, size: 30, color: Colors.black),
+      //       Icon(Icons.home, size: 30, color: Colors.black),
+      //       Icon(Icons.person, size: 30, color: Colors.black),
+      //     ],
+      //     onTap: (index) {
+      //       //Handle button tap
+      //       // setState(() {
+      //       // });
+      //     },
+      //   ),
+      // ),
       resizeToAvoidBottomInset: true,
       drawer: CustomDrawer(),
       extendBodyBehindAppBar: true,
@@ -110,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding:
                                   const EdgeInsets.only(top: 120, left: 20),
-                              child: Text('Hi, Safa!',
+                              child: Text(LocaleKeys.welc.tr(),
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 23)),
                             ),
@@ -123,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 axisAlignment: isPortrait ? 0.0 : -1.0,
                                 width: isPortrait ? 600 : 500,
 
-                                hint: 'Where would you like to go?',
+                                hint: LocaleKeys.search_txt.tr(),
                                 scrollPadding:
                                     const EdgeInsets.only(top: 50, bottom: 56),
                                 transitionDuration:
@@ -223,59 +225,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     top: 10.0),
-                                                child: Text('Flights'),
+                                                child: Text(
+                                                    LocaleKeys.flights.tr(),
+                                                    style: TextStyle(
+                                                        color: Colors.black)),
                                               )
                                             ],
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                width: 88,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        blurRadius: 8,
-                                        offset: Offset(0, 8),
-                                        color: Colors.grey.withOpacity(.5),
-                                        spreadRadius: 4)
-                                  ],
-                                ),
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  HotelsScreen()));
-                                    },
-                                    child: Container(
-                                      child: Center(
-                                          child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 20.0),
-                                        child: Column(
-                                          children: [
-                                            Icon(Icons.hotel_outlined,
-                                                color: Colors.grey[700]),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10.0),
-                                              child: Text('Hotels'),
-                                            )
-                                          ],
-                                        ),
-                                      )),
                                     ),
                                   ),
                                 ),
@@ -318,7 +276,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   top: 10.0),
-                                              child: Text('Trains'),
+                                              child: Text('Trains',
+                                                  style: TextStyle(
+                                                      color: Colors.black)),
                                             )
                                           ],
                                         ),
@@ -370,7 +330,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     top: 10.0),
-                                                child: Text('Ferries'),
+                                                child: Text(
+                                                    LocaleKeys.ferries.tr(),
+                                                    style: TextStyle(
+                                                        color: Colors.black)),
                                               )
                                             ],
                                           ),
@@ -391,7 +354,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       alignment: Alignment.bottomLeft,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10.0),
-                        child: Text('Most relevant',
+                        child: Text(LocaleKeys.most_relv.tr(),
                             style: TextStyle(fontSize: 25, color: green_color)),
                       ),
                     ),
@@ -450,7 +413,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       alignment: Alignment.bottomLeft,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10.0),
-                        child: Text('Hot Places',
+                        child: Text(LocaleKeys.hot.tr(),
                             style: TextStyle(fontSize: 25, color: green_color)),
                       ),
                     ),
@@ -492,3 +455,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+class SettingsScreen {}

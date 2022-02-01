@@ -17,25 +17,19 @@ class EventDescription extends StatefulWidget {
   final String loc;
   final double rating;
   final String details;
+  final String cityName;
+  final String category;
 
-  EventDescription(
-      this.eventName, this.eventImg, this.loc, this.rating, this.details);
+  final geo;
+
+  EventDescription(this.eventName, this.eventImg, this.loc, this.rating,
+      this.details, this.geo, this.cityName, this.category);
 
   @override
   _EventDescriptionState createState() => _EventDescriptionState();
 }
 
 class _EventDescriptionState extends State<EventDescription> {
-  // Completer<GoogleMapController> _controller = Completer();
-  // static final CameraPosition _kGooglePlex = CameraPosition(
-  //   target: LatLng(37.42796133580664, -122.085749655962),
-  //   zoom: 14.4746,
-  // );
-  // static final CameraPosition _kLake = CameraPosition(
-  //     bearing: 192.8334901395799,
-  //     target: LatLng(37.773972, -122.431297),
-  //     tilt: 59.440717697143555,
-  //     zoom: 11.5);
   GoogleMapController mapController;
   final LatLng _center = const LatLng(41.903364019799504, 12.501780158002843);
 
@@ -45,11 +39,6 @@ class _EventDescriptionState extends State<EventDescription> {
 
   @override
   Widget build(BuildContext context) {
-    // Future<void> _goToTheLake() async {
-    //   final GoogleMapController controller = await _controller.future;
-    //   controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-    // }
-
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: appBar(title: '', color: Colors.black),

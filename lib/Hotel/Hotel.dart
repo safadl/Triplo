@@ -10,15 +10,19 @@ class Hotel extends StatefulWidget {
   final String title;
   final String description;
   final String location;
-  final String price;
-  final String rating;
+  final double price;
+  final double rating;
+  final geo;
+  final String cityName;
   Hotel(
       {this.title,
       this.description,
-      this.image,
-      this.location,
       this.price,
-      this.rating});
+      this.location,
+      this.geo,
+      this.image,
+      this.rating,
+      this.cityName});
 
   @override
   _HotelState createState() => _HotelState();
@@ -34,8 +38,16 @@ class _HotelState extends State<Hotel> {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
+            print('geoo + ' + this.widget.geo['coordinates'][1].toString());
+
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => HotelDescription()));
+                builder: (BuildContext context) => HotelDescription(
+                    this.widget.title,
+                    this.widget.image,
+                    this.widget.description,
+                    this.widget.geo,
+                    this.widget.location,
+                    this.widget.rating)));
           },
           child: Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -59,7 +71,7 @@ class _HotelState extends State<Hotel> {
                               style: TextStyle(color: Colors.black),
                             ),
                             Text(
-                              this.widget.price,
+                              this.widget.price.toString() + '\$',
                               style:
                                   TextStyle(color: green_color, fontSize: 12),
                             )
@@ -71,7 +83,7 @@ class _HotelState extends State<Hotel> {
                           children: [
                             RatingBar.builder(
                               itemSize: 10,
-                              initialRating: 3,
+                              initialRating: this.widget.rating,
                               minRating: 1,
                               direction: Axis.horizontal,
                               allowHalfRating: true,

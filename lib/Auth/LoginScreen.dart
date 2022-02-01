@@ -6,6 +6,8 @@ import 'package:travel_app/services/authservice.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../Bottomnav.dart';
+
 const rose_color = const Color(0xffffebeb);
 const purple_color = const Color(0xff838ac5);
 const green_color = const Color(0xff64c7d0);
@@ -75,7 +77,7 @@ class _LoginState extends State<LoginScreen> {
                         if (_isLoggedIn) {
                           print('logged in');
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => HomeScreen()));
+                              builder: (BuildContext context) => Bottomnav()));
                         } else {
                           print('not logged in');
                           Container();
@@ -87,7 +89,7 @@ class _LoginState extends State<LoginScreen> {
                       onPressed: () {
                         _handleSignIn().then((e) {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => HomeScreen()));
+                              builder: (BuildContext context) => Bottomnav()));
                         });
                       },
                     ),
@@ -157,7 +159,7 @@ class _LoginState extends State<LoginScreen> {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                HomeScreen()));
+                                                Bottomnav()));
                                   }
                                 });
 

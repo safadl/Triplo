@@ -12,8 +12,21 @@ class Event extends StatefulWidget {
   final String image;
   final String title;
   final String location;
-  final String rating;
-  Event({this.title, this.image, this.location, this.rating});
+  final double rating;
+  final String description;
+  final String cityName;
+  final String category;
+
+  final geo;
+  Event(
+      {this.title,
+      this.image,
+      this.location,
+      this.rating,
+      this.description,
+      this.geo,
+      this.cityName,
+      this.category});
 
   @override
   _EventState createState() => _EventState();
@@ -22,58 +35,6 @@ class Event extends StatefulWidget {
 class _EventState extends State<Event> {
   @override
   Widget build(BuildContext context) {
-    // final List<String> titles = [
-    //   "RED",
-    //   "YELLOW",
-    //   "BLACK",
-    //   "CYAN",
-    //   "BLUE",
-    //   "GREY",
-    // ];
-
-    // final List<Widget> images = [
-    //   Container(
-    //     color: Colors.red,
-    //   ),
-    //   Container(
-    //     color: Colors.yellow,
-    //   ),
-    //   Container(
-    //     color: Colors.black,
-    //   ),
-    //   Container(
-    //     color: Colors.cyan,
-    //   ),
-    //   Container(
-    //     decoration: BoxDecoration(
-    //       borderRadius: BorderRadius.circular(10),
-    //       // color: Colors.red,
-    //       image: DecorationImage(
-    //         image: NetworkImage(
-    //             'https://media-cdn.tripadvisor.com/media/photo-m/1280/18/19/1a/a8/restaurant-el-borj.jpg'),
-    //         fit: BoxFit.fill,
-    //       ),
-    //     ),
-    //   ),
-    //   Container(
-    //     color: Colors.grey,
-    //   ),
-    // ];
-    // return Expanded(
-    //   child: Container(
-    //     child: VerticalCardPager(
-    //       textStyle:
-    //           TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-    //       titles: titles,
-    //       images: images,
-    //       onPageChanged: (page) {
-    //         // print(page);
-    //       },
-    //       onSelectedItem: (index) {},
-    //     ),
-    //   ),
-    // );
-
     return Container(
       width: 170,
       height: 150,
@@ -83,73 +44,20 @@ class _EventState extends State<Event> {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (BuildContext context) => EventDescription(
-                      "Music Festival",
-                      "https://media.vanityfair.com/photos/5e6921443b2c6a0008bf5b20/master/w_2560%2Cc_limit/FestivalCancellations-2020-GettyImages-174725380.jpg",
-                      "12th street,Main Street, Rome, Italy",
-                      3.5,
-                      "You will have the time of your life here. Many musicians and singers gather at the same place for one night to perform their best songs.",
-                    )));
+                    this.widget.title,
+                    this.widget.image,
+                    this.widget.location,
+                    this.widget.rating,
+                    this.widget.description,
+                    this.widget.geo,
+                    this.widget.cityName,
+                    this.widget.category)));
           },
           child: Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                // alignment: Alignment.bottomCenter,
-                // child: Stack(
-                //   children: [
-                //     Container(
-                //       color: Colors.black.withOpacity(0.5),
-                //       width: MediaQuery.of(context).size.width,
-                //       height: 80,
-                //       child: ListView(
-                //         children: [
-                //           Column(
-                //             children: [
-                //               SizedBox(height: 5),
-                //               Text(
-                //                 this.widget.title,
-                //                 style:
-                //                     TextStyle(color: Colors.white, fontSize: 20),
-                //               ),
-                //               Row(
-                //                 mainAxisAlignment: MainAxisAlignment.center,
-                //                 children: [
-                //                   Icon(Icons.location_on_outlined,
-                //                       color: coral_color),
-                //                   Text(
-                //                     this.widget.location,
-                //                     style: TextStyle(color: Colors.white),
-                //                   ),
-                //                 ],
-                //               ),
-                //               Row(
-                //                 mainAxisAlignment: MainAxisAlignment.center,
-                //                 children: [
-                //                   Icon(Icons.date_range_outlined,
-                //                       color: coral_color),
-                //                   Text(
-                //                     this.widget.location,
-                //                     style: TextStyle(color: Colors.white),
-                //                   ),
-                //                 ],
-                //               ),
-                //             ],
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // decoration: BoxDecoration(
-                //   image: DecorationImage(
-                //     image: NetworkImage(this.widget.image),
-                //     fit: BoxFit.fitWidth,
-                //     alignment: Alignment.topCenter,
-                //     colorFilter: ColorFilter.mode(
-                //         Colors.black.withOpacity(0.3), BlendMode.darken),
-                //   ),
-                // ),
                 child: Row(
                   children: [
                     ClipRRect(

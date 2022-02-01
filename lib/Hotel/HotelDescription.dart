@@ -15,23 +15,22 @@ const coral_color = const Color(0xffff868f);
 const green_color = const Color(0xff64c7d0);
 
 class HotelDescription extends StatefulWidget {
+  final String image;
+  final String title;
+  final String description;
+  final String location;
+  final geo;
+  final double rating;
+
+  HotelDescription(this.title, this.image, this.description, this.geo,
+      this.location, this.rating);
+
   @override
   _HotelDescriptionState createState() => _HotelDescriptionState();
 }
 
 class _HotelDescriptionState extends State<HotelDescription> {
-  // Completer<GoogleMapController> _controller = Completer();
-  // static final CameraPosition _kGooglePlex = CameraPosition(
-  //   target: LatLng(37.42796133580664, -122.085749655962),
-  //   zoom: 14.4746,
-  // );
-  // static final CameraPosition _kLake = CameraPosition(
-  //     bearing: 192.8334901395799,
-  //     target: LatLng(37.773972, -122.431297),
-  //     tilt: 59.440717697143555,
-  //     zoom: 11.5);
   GoogleMapController mapController;
-  final LatLng _center = const LatLng(41.903364019799504, 12.501780158002843);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -39,10 +38,8 @@ class _HotelDescriptionState extends State<HotelDescription> {
 
   @override
   Widget build(BuildContext context) {
-    // Future<void> _goToTheLake() async {
-    //   final GoogleMapController controller = await _controller.future;
-    //   controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-    // }
+    final LatLng _center = LatLng(this.widget.geo['coordinates'][0].toDouble(),
+        this.widget.geo['coordinates'][1].toDouble());
 
     return Scaffold(
       drawer: CustomDrawer(),
@@ -54,7 +51,7 @@ class _HotelDescriptionState extends State<HotelDescription> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Hotel Marsala',
+                this.widget.title,
                 style: GoogleFonts.aBeeZee(fontSize: 27, color: dark_color),
               ),
               SizedBox(height: 10),
@@ -62,7 +59,7 @@ class _HotelDescriptionState extends State<HotelDescription> {
                 children: [
                   Icon(Icons.location_on_outlined, color: coral_color),
                   Text(
-                    'Rue 8, Rome,Italy',
+                    this.widget.location,
                     style: GoogleFonts.aBeeZee(fontSize: 15, color: dark_color),
                   )
                 ],
@@ -71,7 +68,7 @@ class _HotelDescriptionState extends State<HotelDescription> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.network(
-                  'https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg',
+                  this.widget.image,
                 ),
               ),
               SizedBox(height: 25),
@@ -89,7 +86,7 @@ class _HotelDescriptionState extends State<HotelDescription> {
               ),
               SizedBox(height: 4),
               Text(
-                "Welcome to the Hotel Marsala Roma, a charming 2 star hotel offering all modern comforts at a great price to suit all budgets. Hotel Marsala Roma is located right in the heart of the city, 100 meters from the main Termini train station and with all of Rome's most historic monuments within easy reach",
+                this.widget.description,
                 maxLines: 4,
                 style: GoogleFonts.notoSans(
                     fontSize: 15, color: dark_color, height: 2),
@@ -124,7 +121,7 @@ class _HotelDescriptionState extends State<HotelDescription> {
               ),
               RatingBar.builder(
                 itemSize: 18,
-                initialRating: 3.5,
+                initialRating: this.widget.rating,
                 minRating: 1,
                 direction: Axis.horizontal,
                 allowHalfRating: true,

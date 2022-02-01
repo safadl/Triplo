@@ -11,12 +11,15 @@ const green_color = const Color(0xff64c7d0);
 const dark_color = const Color(0xff232323);
 
 class HotelsScreen extends StatefulWidget {
+  final String city;
+  HotelsScreen(this.city);
   @override
   _HotelsScreenState createState() => _HotelsScreenState();
 }
 
 class _HotelsScreenState extends State<HotelsScreen> {
   var hotelItems = [];
+
   final baseurl = "http://192.168.1.17:8000/";
   @override
   void initState() {
@@ -73,15 +76,6 @@ class _HotelsScreenState extends State<HotelsScreen> {
                     onQueryChanged: (query) {},
 
                     actions: [
-                      // FloatingSearchBarAction(
-                      //   showIfOpened: false,
-
-                      //   child: CircularButton(
-                      //     icon: const Icon(Icons.search_outlined,
-                      //         color: green_color),
-                      //     onPressed: () {},
-                      //   ),
-                      // ),
                       FloatingSearchBarAction.searchToClear(
                         showIfClosed: true,
                       ),
@@ -113,36 +107,26 @@ class _HotelsScreenState extends State<HotelsScreen> {
           Container(
             // decoration: BoxDecoration(color: Colors.red),
             height: MediaQuery.of(context).size.height * 0.81,
-            child: ListView(
-              shrinkWrap: true,
-              // scrollDirection: Axis.horizontal,
-              children: [
-                Hotel(
-                    title: 'Hotel four seasons',
-                    description: 'Indonesia',
-                    price: '700\$',
-                    image:
-                        'https://q-xx.bstatic.com/xdata/images/hotel/840x460/251002386.jpg?k=fd49dd621001fbfaf84a6c4546faf54fbf7471d1a953b6f19c7df59c78eafd33&o='),
-                Hotel(
-                    title: "Hotel Movenpick",
-                    description: 'USA',
-                    price: '1200\$',
-                    image:
-                        'https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg'),
-                Hotel(
-                    title: "Hotel Marcella",
-                    description: 'Japan',
-                    price: '900\$',
-                    image:
-                        'https://image.resabooking.com/images/hotel/Nesrine_10.jpg'),
-                Hotel(
-                    title: "Hotel Marbella",
-                    description: 'Japan',
-                    price: '900\$',
-                    image:
-                        'https://promohotel.os-travel.com/file_manager/source/GALLERY/HAMMAMET/MAGIC%20LIFE%20HOLIDAY%20VILLAGE%20MANAR/booking.promohotel.tn-Hotel-Magic-life-holiday-village-Manar-Hammamet-piscine.webp'),
-              ],
-            ),
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: hotelItems.length,
+                itemBuilder: (context, index) {
+                  return this.widget.city.toLowerCase() ==
+                          hotelItems[index]['cityName'].toLowerCase()
+                      ? Hotel(
+                          title: hotelItems[index]['hotelName'],
+                          description: hotelItems[index]['hotelDescription'],
+                          price: hotelItems[index]['price'].toDouble(),
+                          location: hotelItems[index]['locationHotel'],
+                          geo: hotelItems[index]['geo'],
+                          image: hotelItems[index]['hotelImage'],
+                          rating: hotelItems[index]['rating'] == null
+                              ? 0.0
+                              : hotelItems[index]['rating'].toDouble(),
+                          cityName: hotelItems[index]['cityName'],
+                        )
+                      : Container(child: Text('No hotels available yet.'));
+                }),
           ),
         ],
       ),

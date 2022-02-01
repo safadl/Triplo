@@ -117,8 +117,10 @@ class _CityDescriptionState extends State<CityDescription> {
                   Icons.restaurant_outlined,
                   RestaurantScreen(this.widget.title),
                 ),
-                ResourcesWidget("Hotels", Icons.hotel_outlined, HotelsScreen()),
-                ResourcesWidget("Events", Icons.event_outlined, EventScreen()),
+                ResourcesWidget("Hotels", Icons.hotel_outlined,
+                    HotelsScreen(this.widget.title)),
+                ResourcesWidget("Events", Icons.event_outlined,
+                    EventScreen(this.widget.title)),
               ]),
               SizedBox(height: 15),
               Text(

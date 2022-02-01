@@ -28,7 +28,7 @@ class _RestaurantsScreenState extends State<RestaurantScreen> {
   }
 
   Future<void> getJSONData() async {
-    var url = Uri.parse("http://192.168.72.102:8000/api/restos/getAll");
+    var url = Uri.parse("http://192.168.1.17:8000/api/restos/getAll");
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
@@ -109,11 +109,6 @@ class _RestaurantsScreenState extends State<RestaurantScreen> {
               itemCount: restoItems.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                // print("city item index" + restoItems[index]['cityName']);
-                // print('index : ' +
-                //     index.toString() +
-                //     'item :' +
-                //     restoItems[index]['cityName']);
                 return this.widget.city == restoItems[index]['cityName']
                     ? Restaurant(
                         title: restoItems[index]['restoName'],
